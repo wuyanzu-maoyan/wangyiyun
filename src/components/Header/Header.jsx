@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import './css/header.less';
 import {NavLink} from 'react-router-dom'
-export default class MyComponent extends Component{
+export default class Header extends Component{
   state={
     routeList:[
      {
