@@ -1,15 +1,9 @@
 import React,{Component} from 'react'
-import './Disc-DVD.less'
-export default class MyComponent extends Component{
+import './css.less'
+export default class Oumei extends Component{
   render(){
     return (
-      <div>
-        <div className="content">
-          <div className="title">
-            <h3>
-              <span>新碟上架</span>
-            </h3>
-          </div>
+      <div className="content">
           <ul className="cvrlst">
             <li>
               <div className="cover"><img src="http://p3.music.126.net/R5hmBoVZt0I56BPiVic1aA==/109951164601146483.jpg?param=130y130"></img>
@@ -60,24 +54,6 @@ export default class MyComponent extends Component{
               <p className="thide"><span><a>Justin Bieber</a></span></p>
             </li>
           </ul>
-          <div className="title1">
-            <h3>
-              <span>全部新碟</span>
-            </h3>
-          
-            <div>
-              <a>全部</a>
-              <span>|</span>
-              <a>华语</a>
-              <span>|</span>
-              <a>欧美</a>
-              <span>|</span>
-              <a>韩国</a>
-              <span>|</span>
-              <a>日本</a>
-            </div>
-          </div>
-        </div>
       </div>
     )
   }
