@@ -1,0 +1,198 @@
+#wjContainer{
+  width: 980px;
+  min-height:calc(100vh - 105px);
+  margin: 0 auto;
+  border-width:0 1px;
+  border-style: solid;
+  border-color: #d3d3d3;
+}
+.wjBody{
+  width:100%;
+  padding:40px;
+  position: relative;
+  .wjTitle{
+    width: 100%;
+    height: 40px;
+    border-bottom: 2px solid #c20c0c;
+    h3{
+      float: left;
+      font-size: 24px;
+      a{
+        display: inline-block;
+        vertical-align: top;
+        text-align: center;
+        line-height: 31px;
+        font-size: 12px;
+        width: 86px;
+        height: 31px;
+        margin-top: 2px;
+        margin-left: 12px;
+        padding-right: 5px;
+        background-image: url('./images/wj1.png');
+        background-position: right -100px;
+        &:hover{
+          background-position: right -182px;
+          i{
+            background-position: 0 -141px;
+          }
+        }
+        &:active{
+          background-position: right -264px;
+          i{
+            background-position: 0 -223px;
+          }
+        }
+        i{
+          background-image: url('./images/wj1.png');
+          background-position: 0 -59px;
+          display: inline-block;
+          width: 100%;
+          height: 100%;
+          box-sizing: border-box;
+          padding:0 10px 0 15px;
+          color:#0c73c2;
+          font-style: normal;
+        }
+      }
+    }
+    .wjBtn{
+      width: 46px;
+      height: 29px;
+      background-image: url('./images/wjButton.png');
+      background-position: 0 0;
+      border-radius: 3px;
+      float:right;
+      a{
+        width: 46px;
+        font-size: 12px;
+        line-height: 29px;
+        text-align: center;
+        float: left;
+        color: #fff;
+        text-decoration: none;
+        &:hover{
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  .wjBox{
+    // display: none;
+    width: 720px;
+    height: 437px;
+    position:absolute;
+    top: 75px;
+    left: 0;
+    .wjHd{
+      width: 100%;
+      height: 32px;
+      background-image: url('./images/sltlyr.png');
+      i{
+        background-image: url('./images/iconall.png');
+        background-position: -48px 0;
+        position: absolute;
+        width: 24px;
+        height: 11px;
+        top:2px;
+        left: 132px;
+      }
+    }
+    .wjBd{
+      width:100%;
+      height: 385px;
+      padding: 0 10px;
+      background-image: url('./images/sltlyr.png');
+      background-position: -720px 0;
+      h3{
+        width: 100%;
+        height: 37px;
+        padding-left: 26px;
+        border-bottom: 1px solid #e6e6e6;
+        a{
+          display: inline-block;
+          width: 75px;
+          height: 26px;
+          background-image: url('./images/wjButton.png');
+          background-position: 0 -64px;
+          line-height: 26px;
+          text-align: center;
+          text-decoration: none;
+          color: #333;
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+      }
+      dl{
+        width: 100%;
+        // height: 42px;
+        dt{
+          float: left;
+          width: 70px;
+          // height: 27px;  
+          margin-left: 26px;  
+          margin-right: -100px; 
+          padding-top: 15px;
+          border-right: 1px solid #e6e6e6;
+          font-weight: bold;   
+          box-sizing: content-box;
+          i{
+            display: inline-block;
+            width: 23px;
+            height: 23px;
+            margin: 0 8px 4px 0;
+            background-image: url('./images/icon.png');
+            vertical-align: middle;
+          }
+          .icon1{
+            background-position: -20px -735px;
+          }
+          .icon2{
+            background-position: 0 -60px;
+          }
+          .icon3{
+            background-position: 0 -88px;
+          }
+          .icon4{
+            background-position: 0 -117px;
+          }
+          .icon5{
+            background-position: 0 -141px;
+          }
+        } 
+        dd{
+          width: 537px;
+          // height: 24px;
+          padding: 16px 15px 0 15px;
+          margin-left: 96px;
+          border-left: 1px solid #e6e6e6;
+          box-sizing: content-box;
+          line-height: 24px;
+          a{
+            text-decoration: none;
+            color: #333;
+            white-space: nowrap;
+            &:hover{
+              text-decoration: underline;
+            }
+          }
+          span{
+            margin: 0 8px 0 10px;
+            color: #d8d8d8;
+            line-height: 24px;
+          }
+        }
+        .last{
+          padding-bottom: 25px;
+        }
+      }
+    }
+    .wjFt{
+      width: 100%;
+      height: 20px;
+      background-image: url('./images/sltlyr.png');
+      background-position: -1440px -12px;
+    }
+  }
+}
+  

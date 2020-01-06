@@ -8,6 +8,8 @@ import Singer from './containers/Singer/Singer.jsx';
 import SongList from './containers/SongList/SongList.jsx';
 import TopList from './containers/TopList/TopList.jsx';
 import Header from './components/Header/Header.jsx'
+import Radio from './containers/Radio/Radio'
+import SongList from './containers/SongList/SongList'
 import Footer from './components/Footer/Footer.jsx'
 
 export default class App extends Component{
