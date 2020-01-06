@@ -1,6 +1,12 @@
 import React,{Component} from 'react';
-import {Switch} from 'react-router-dom'
+import {Switch,Route,Redirect} from 'react-router-dom'
 import './app.less';
+import New from './containers/New/New.jsx';
+import Radio from './containers/Radio/Radio.jsx';
+import Recommend from './containers/Recommend/Recommend.jsx';
+import Singer from './containers/Singer/Singer.jsx';
+import SongList from './containers/SongList/SongList.jsx';
+import TopList from './containers/TopList/TopList.jsx';
 
 import Header from './components/Header/Header.jsx'
 import Footer from './components/Footer/Footer.jsx'
@@ -11,7 +17,13 @@ export default class App extends Component{
         <Header/>
         <div className="kjcContent">
           <Switch>
-
+          <Route path="/new" component={New}></Route>
+          <Route path="/radio" component={Radio}></Route>
+          <Route path="/recommend" component={Recommend}></Route>
+          <Route path="/singer" component={Singer}></Route>
+          <Route path="/songlist" component={SongList}></Route>
+          <Route path="/toplist" component={TopList}></Route>
+          <Redirect path="/" to={New}></Redirect>
           </Switch>
         </div>
         <Footer/>
