@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
-import {Switch} from 'react-router-dom'
-import './app.less';
+import {Switch,Route} from 'react-router-dom'
+import Singer from './containers/Singer/Singer.jsx'
+import './App.less';
 
 import Header from './components/Header/Header.jsx'
 import Footer from './components/Footer/Footer.jsx'
@@ -11,7 +12,7 @@ export default class App extends Component{
         <Header/>
         <div className="kjcContent">
           <Switch>
-
+            <Route path="/singer" component={Singer}/>
           </Switch>
         </div>
         <Footer/>
