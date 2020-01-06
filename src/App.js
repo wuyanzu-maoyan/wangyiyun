@@ -23,7 +23,7 @@ export default class App extends Component{
           <Route path="/singer" component={Singer}></Route>
           <Route path="/songlist" component={SongList}></Route>
           <Route path="/toplist" component={TopList}></Route>
-          <Redirect path="/" to={New}></Redirect>
+          <Redirect to='/new'></Redirect>
           </Switch>
         </div>
         <Footer/>

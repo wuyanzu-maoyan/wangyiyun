@@ -65,7 +65,6 @@ export default class Header extends Component{
       </div>
       <nav className="kjcNav  clearfix">
           <div className="kjcNavRed w">
-          {/* <i className="kjcR"></i> */}
               <ul>
                 {
                     routeList.map((item,index)=>{
