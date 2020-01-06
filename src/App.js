@@ -4,6 +4,7 @@ import './App.less';
 
 import Header from './components/Header/Header.jsx'
 import Radio from './containers/Radio/Radio'
+import SongList from './containers/SongList/SongList'
 import Footer from './components/Footer/Footer.jsx'
 import Recommend from './containers/Recommend/Recommend';
 export default class App extends Component{
@@ -14,6 +15,7 @@ export default class App extends Component{
         <div className="kjcContent">
           <Switch>
             <Route path="/radio" component={Radio}/>
+            <Route path="/songlist" component={SongList}></Route>
           </Switch>
         </div>
         <Footer/>
