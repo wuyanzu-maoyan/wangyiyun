@@ -1,9 +1,13 @@
-import React,{Component} from 'react'
-import './App.less';
+import React,{Component} from 'react';
+import './app.less';
+
+import Header from './components/Header/Header.jsx'
 export default class App extends Component{
   render(){
     return (
-      <div class="kjcAppContainer">123</div>
+      <div className="kjcAppContainer">
+        <Header/>
+      </div>
     )
   }
 }
