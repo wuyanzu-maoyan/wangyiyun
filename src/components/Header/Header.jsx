@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-
+import './css/header.less';
 export default class MyComponent extends Component{
   render(){
     return (
@@ -31,7 +31,7 @@ export default class MyComponent extends Component{
           <div className="search">
               <form action="#1">
                   <i className="iconfont icon-sousuo"></i>
-                  <input type="text" placeholder="音乐/视频/电台/用户">
+                  <input type="text" placeholder="音乐/视频/电台/用户"/>
               </form>
           </div>
       </div>
@@ -48,7 +48,6 @@ export default class MyComponent extends Component{
               </ul>
           </div>
       </nav>
-  </div>
   </div>
     )
   }
