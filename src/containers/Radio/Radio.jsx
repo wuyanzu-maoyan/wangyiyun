@@ -93,8 +93,31 @@ export default class MyComponent extends Component{
                 <span className="dot"></span>
               </div>
               {/* 左右翻页 */}
-              <div> ＜ </div>
-              <div> ＞ </div>
+              <div className="turn prev"> ＜ </div>
+              <div className="turn next"> ＞ </div>
+            </div>
+            <div className="radioPlay">
+              <div className="play recomment">
+                <div className="title">
+                  <h3>推荐节目</h3>
+                  <span>更多 > </span>
+                </div>
+                <ul className="list">
+                  <li>
+                    <img src="http://p1.music.126.net/_ljpNzU6rSE04fpWqdU2YQ==/109951164598716309.jpg?param=40x40" alt=""/>
+                    <div className="middle">
+                      <h3>【发刊词】致抑郁者的一束光</h3>
+                      <p>7招快速改善抑郁</p>
+                    </div>
+                    <div className="btn">
+                      情感调频
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div className="play playList">
+
+              </div>
             </div>
           </div>
         </div>

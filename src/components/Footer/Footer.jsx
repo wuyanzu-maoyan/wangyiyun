@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import './css/footer.less'
 
 export default class MyComponent extends Component{
   render(){
@@ -21,10 +22,10 @@ export default class MyComponent extends Component{
 
           </div>
           <ul className="yonghurenzheng">
-              <li id="yonghu"><a href="#1"></a><span></span></li>
-              <li id="duli"><a href="#1"></a><span></span></li>
-              <li id="zanshang"><a href="#1"></a><span></span></li>
-              <li id="shipin"><a href="#1"></a><span></span></li>
+              <li id="yonghu"><i></i><span></span></li>
+              <li id="duli"><i></i><span></span></li>
+              <li id="zanshang"><i></i><span></span></li>
+              <li id="shipin"><i></i><span></span></li>
           </ul>
 
       </div>
