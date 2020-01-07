@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Swiper from 'swiper';
 import {Icon} from 'antd';
+import _ from 'lodash';
 import "swiper/css/swiper.min.css"
 import './css/recommend.less';
 import { 
@@ -61,6 +62,33 @@ export default class Recommend extends Component {
       
     }
   }
+  getSingerList = async() => {
+    const result = await reqSingerList();
+    const {code,artists} = result;
+    
+    //console.log(arr);
+    if(code===200){
+      this.setState({singerList:artists.splice(0,5)});
+    }
+  }
+  getNewLists = async() => {
+    const result = await reqNewList();
+    const {code,albums} = result;
+    if(code===200){
+      const arr = _.chunk(albums.splice(0,10),5)
+      this.setState({newLists:arr},() => {
+        console.log('---');
+        new Swiper ('.new-swiper-container', {
+          loop: true,  //循环
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          
+        })
+      })
+    }
+  }
   getRiseList =  async() => {
     const result = await reqRiseList();
     const {code,playlist} = result;
@@ -84,32 +112,7 @@ export default class Recommend extends Component {
       this.setState({original:playlist})
     }
   }
-  getSingerList = async() => {
-    const result = await reqSingerList();
-    const {code,artists} = result;
-    console.log(result);
-    if(code===200){
-      console.log(artists);
-      this.setState({singerList:artists});
-    }
-  }
-  getNewList = async() => {
-    const result = await reqNewList();
-    const {code,albums} = result;
-    if(code===200){
-      this.setState({newList:albums},() => {
-        console.log('---');
-        new Swiper ('.new-swiper-container', {
-          loop: true,  //循环
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
-          
-        })
-      })
-    }
-  }
+  
   
   state = {
     mvList: [],
@@ -119,22 +122,25 @@ export default class Recommend extends Component {
     new:{},
     original:{},
     singerList:[],
-    newList:[]
+    newLists:[]
   }
   
   componentDidMount() {
     //获取轮播图数据
     this.getMVlist();
-    //可以加上你需要的条件等，然后生成Swiper对象，
-    //一定要检查是不是每次都生成了Swiper对象，否则可能出现不滑动的情况和别的情况等
+    //分类
     this.getCategory();
+    //分类下的内容（热门推荐）
     this.getRecommend();
-
+    //获取入驻歌手
+    this.getSingerList();
+    //获取新碟上架
+    this.getNewLists();
+    //获取榜单的三个
     this.getRiseList();
     this.getNewSongs();
     this.getOriginalList();
-    this.getSingerList();
-    this.getNewList()
+    
   }
   
 
@@ -249,9 +255,25 @@ export default class Recommend extends Component {
 
                   <div className="new-swiper-container">
                     <div className="swiper-wrapper">
-                        <div className="swiper-slide">Slide 1</div>
-                        <div className="swiper-slide">Slide 2</div>
-                        <div className="swiper-slide">Slide 3</div>
+                      {
+                        this.state.newLists.map((list,index) => {
+                          return (
+                            <div className="swiper-slide" key={index}>
+                              {
+                                list.map((item) => {
+                                  return (
+                                    <div className='slideItem' key={item.id}>
+                                      <div className="imgBlock"><img src={item.blurPicUrl} alt=""/></div>
+                                      <p>{item.name}</p>
+                                      <p>{item.artist.name}</p>
+                                    </div>
+                                  )
+                                })
+                              }
+                            </div>
+                          )
+                        })
+                      }
                     </div>
                     
                     
@@ -308,7 +330,6 @@ export default class Recommend extends Component {
                                   <a href="" title='添加到播放列表'><Icon type="plus-circle" className='iconItem'/></a>
                                   <a href="" title='收藏'><Icon type="folder-add" className='iconItem'/></a>
                                 </div>
-                                
                               </li>    
                             )
                           }):''
@@ -414,7 +435,7 @@ export default class Recommend extends Component {
               </div>
               <ul className="singerList">
                 {
-                  this.state.singerList.splice(0,5).map((item,index) => {
+                  this.state.singerList.map((item,index) => {
                     return (<li className='singerItem' key={item.img1v1Id}>
                       <div className="avator">
                         <img src={item.picUrl} alt=""/>
@@ -439,7 +460,7 @@ export default class Recommend extends Component {
               </div>
               <ul className="singerList">
               {
-                  this.state.singerList.splice(0,5).map((item,index) => {
+                  this.state.singerList.map((item,index) => {
                     return (<li className='singerItem' key={item.img1v1Id}>
                       <div className="avator">
                         <img src={item.picUrl} alt=""/>
