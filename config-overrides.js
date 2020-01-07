@@ -8,7 +8,7 @@ const { override, fixBabelImports, addLessLoader,addDecoratorsLegacy} = require(
     }),
     addLessLoader({
       javascriptEnabled: true,
-      modifyVars: { '@primary-color': '#1DA57A' },
+      modifyVars: { '@primary-color': '#C20C0C' },
     }),
     addDecoratorsLegacy()
  );

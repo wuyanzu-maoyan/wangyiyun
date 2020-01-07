@@ -260,7 +260,7 @@ class RightContent extends Component{
               </ul>
               
             </div>
-            <Pagination onChange={this.onChange} pageSize={20} size='small' style={{marginLeft:'130px'}} total={total} itemRender={this.itemRender} />
+            <Pagination onChange={this.onChange} pageSize={20} size='middle' style={{marginLeft:'130px'}} total={total} itemRender={this.itemRender} />
 
           </div>
      

@@ -5,6 +5,23 @@ a{
   height: 105px;
   width:100%;
   font-size: 12px;
+  position: relative;
+  .kjcFix{
+    display: none;
+    position: fixed;
+    width: 49px;
+    height: 44px;
+    left: 50%;
+    margin-left: 500px;
+    background-image: url('../img/sprite.png');
+    background-position: -265px -47px;
+    background-repeat: no-repeat;
+    bottom: 160px;
+    cursor:pointer;
+    &:hover{
+      background-position: -325px -47px;
+    }
+  }
   .kjcTopBar{
     height:70px;
     width:100%;
