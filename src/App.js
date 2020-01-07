@@ -26,7 +26,7 @@ export default class App extends Component{
           <Route path="/songlist" component={SongList}></Route>
           <Route path="/toplist" component={TopList}></Route>
           <Route path="/disc" component={Disc}/>
-          <Redirect to='/toplist'></Redirect>
+          <Redirect to='/recommend'></Redirect>
           </Switch>
         </div>
         <Footer/>

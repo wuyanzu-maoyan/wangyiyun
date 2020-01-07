@@ -147,7 +147,19 @@ export default class Recommend extends Component {
     
   }
   
-
+  toSongList = (category) => {
+    this.props.history.push('/songlist');
+  }
+  toDisc = () => {
+    this.props.history.push('/disc')
+  }
+  toTopList = () => {
+    this.props.history.push('/toplist')
+  }
+  toSinger = (event) => {
+    event.preventDefault();
+    this.props.history.push('/singer');
+  }
   render() {
     return (
       <div className='RecommendContainer'>
@@ -199,7 +211,7 @@ export default class Recommend extends Component {
             <div className="left">
               <div className="hot">
                 <div className="hotNav">
-                    <div className='hotTitle'>
+                    <div className='hotTitle' onClick={this.toSongList}>
                       <div className='titleIcon'></div>
                       <h3>热门推荐</h3>
                     </div>
@@ -207,7 +219,7 @@ export default class Recommend extends Component {
                       {
                         this.state.hotCategory.map((item,index) => {
                           return (
-                            <a key={index}>
+                            <a key={index} onClick={() => {this.toSongList(item.category)}}>
                               {item.name}
                               <span>|</span>
                             </a>
@@ -249,11 +261,11 @@ export default class Recommend extends Component {
               </div>
               <div className="new">
                 <div className="nav">
-                      <div className='title'>
+                      <div className='title' onClick={this.toDisc}>
                         <div className='titleIcon'></div>
                         <h3>新碟上架</h3>
                       </div>
-                      <div className="more">
+                      <div className="more" onClick={this.toDisc}>
                           <span >更多</span>
                           <span > > </span>
                       </div>
@@ -297,11 +309,11 @@ export default class Recommend extends Component {
               </div>
               <div className="topList">
                 <div className="nav">
-                    <div className='title'>
+                    <div className='title' onClick={this.toTopList}>
                       <div className='titleIcon'></div>
                       <h3>榜单</h3>
                     </div>
-                    <div className="more">
+                    <div className="more" onClick={this.toTopList}>
                         <span >更多</span>
                         <span > > </span>
                     </div>
@@ -310,7 +322,7 @@ export default class Recommend extends Component {
                 <div className="topListContent">
 
                   <div className="riseList">
-                    <div className='playListTitle'>
+                    <div className='playListTitle' onClick={() => {this.toTopList('3')}}>
                       <div className='imgBlock'>
                         <img src={this.state.rise.coverImgUrl} alt=""/>
                       </div>
@@ -351,7 +363,7 @@ export default class Recommend extends Component {
                   </div>
                   
                   <div className="newSongs">
-                    <div className='playListTitle'>
+                    <div className='playListTitle' onClick={() => {this.toTopList('0')}}>
                       <div className='imgBlock'>
                         <img src={this.state.new.coverImgUrl} alt=""/>
                       </div>
@@ -390,7 +402,7 @@ export default class Recommend extends Component {
                     </div>
                   
                   <div className="originalList">
-                    <div className='playListTitle'>
+                    <div className='playListTitle' onClick={() => {this.toTopList('2')}}>
                       <div className='imgBlock'>
                         <img src={this.state.original.coverImgUrl} alt=""/>
                       </div>
@@ -440,7 +452,7 @@ export default class Recommend extends Component {
             <div className="singer">
               <div className="rightTitle">
                 <h3>入驻歌手</h3>
-                <a href="">查看全部></a>
+                <a href="" onClick={this.toSinger}>查看全部></a>
               </div>
               <ul className="singerList">
                 {
