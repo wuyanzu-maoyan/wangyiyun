@@ -5,7 +5,7 @@ import RightContent from './RightContent/RightContent'
 import {reqTopList,reqTopItem,reqCommentList} from '../../api'
 import {connect} from 'react-redux'
 import {createGetTopListAction,createGetTopItemAction,createGetCommentListAction} from '../../redux/action_creator/topList_action'
-import {Switch,Route,Redirect} from 'react-router-dom'
+import {Switch,Route} from 'react-router-dom'
 
 @connect(state=>({}),{
   setTopList:createGetTopListAction,
