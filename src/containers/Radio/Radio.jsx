@@ -54,7 +54,7 @@ export default class Radio extends Component{
   //获取 节目排行榜
   getRadioPlayList = async()=>{
     let result = await reqRadioPlayList(10)
-    // console.log(result);
+    console.log(result);
     if(result.code === 200){
       const playList = result.toplist
       this.setState({
@@ -151,6 +151,7 @@ export default class Radio extends Component{
     this.setState({
       activeIndex: index
     })
+    //点击跳转到各个页面
     window.location.href=`https://music.163.com/#/discover/djradio/category?id=${id}`  //在当前窗口跳转
     // window.open('about:blank').location.href=`https://music.163.com/#/discover/djradio/category?id=${id}` //打开新窗口
   }
@@ -161,6 +162,7 @@ export default class Radio extends Component{
       <div id='radioContainer'>
         <div className="radioBg">
           <div className="radioWrap">
+            {/* 电台分类 */}
             <div className="swiper-container radioTypes">
               {/* 电台分类 */}
               <div className="swiper-wrapper typeBoxes">
@@ -208,6 +210,7 @@ export default class Radio extends Component{
               <div className="turn swiper-button-prev"></div>
               <div className="turn swiper-button-next"></div>
             </div>
+            {/* 推荐节目  节目排行榜 */}
             <div className="radioPlay">
               {/* 推荐节目 */}
               <div className="play recommend">
@@ -239,20 +242,52 @@ export default class Radio extends Component{
                 <ul className="list">
                   {
                     playList.map((play,index) =>{
-                      return <li key={index}>
-                        <div className="rank">
-                          <p>{play.rank}</p>
-                          <span>- 0</span>
-                        </div>
-                        <img src={play.program.coverUrl} alt="图片"/>
-                        <div className="middle">
-                          <h3>{play.program.name}</h3>
-                          <p>{play.program.radio.name}</p>
-                        </div>
-                        <div className="len">
-                          <i style={{width: `${(play.score)/300000*100}%`}}></i>
-                        </div>
-                      </li>
+                      if (play.rank<=3) {
+                        return <li key={index}>
+                          <div className="rank">
+                            <p className="red">{++index}</p>
+                            <span className="up">{10-index}</span>
+                          </div>
+                          <img src={play.program.coverUrl} alt="图片"/>
+                          <div className="middle">
+                            <h3>{play.program.name}</h3>
+                            <p>{play.program.radio.name}</p>
+                          </div>
+                          <div className="len">
+                            <i style={{width: `${(play.score)/300000*100}%`}}></i>
+                          </div>
+                        </li>
+                      }else if(index===5 || index===7 || index===8) {
+                        return <li key={index}>
+                          <div className="rank">
+                            <p className="gray">{++index}</p>
+                            <span className="new"></span>
+                          </div>
+                          <img src={play.program.coverUrl} alt="图片"/>
+                          <div className="middle">
+                            <h3>{play.program.name}</h3>
+                            <p>{play.program.radio.name}</p>
+                          </div>
+                          <div className="len">
+                            <i style={{width: `${(play.score)/300000*100}%`}}></i>
+                          </div>
+                        </li>
+                      } else if(play.rank>3){
+                        return <li key={index}>
+                          <div className="rank">
+                            <p className="gray">{++index}</p>
+                            <span className="flat">- 0</span>
+                          </div>
+                          <img src={play.program.coverUrl} alt="图片"/>
+                          <div className="middle">
+                            <h3>{play.program.name}</h3>
+                            <p>{play.program.radio.name}</p>
+                          </div>
+                          <div className="len">
+                            <i style={{width: `${(play.score)/300000*100}%`}}></i>
+                          </div>
+                        </li>
+                      } 
                     })
                   }
                 </ul>
