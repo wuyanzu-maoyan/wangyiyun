@@ -9460,6 +9460,11 @@ public-encrypt@^4.0.0:
     randombytes "^2.0.1"
     safe-buffer "^5.1.2"
 
+pubsub-js@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.npm.taobao.org/pubsub-js/download/pubsub-js-1.8.0.tgz#e2b523a030140a3d6e080735a48850a9622ed20a"
+  integrity sha1-4rUjoDAUCj1uCAc1pIhQqWIu0go=
+
 pump-chain@1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/pump-chain/download/pump-chain-1.0.0.tgz#7d57d8d9ad8181ea808f5413c4f2bc1e786a5e37"
