@@ -5,7 +5,7 @@ a{
   width: 100%;
   height: 100%;
   .MVWrapper{
-    height: 100%;
+    height: 285px;
     width: 100%;
     
     .swiper-container {
@@ -68,15 +68,23 @@ a{
       width: 100%;
       margin-right: -250px;
       float: left;
-      padding: 20px 20px 40px;
       
+      .left::after{
+        content: '';
+        display: table;
+      }
       .left{
+        border-right: 1px solid #eee;
+        padding: 0 20px;
+        box-sizing: content-box;
+        width: 689px;
         a:hover{
           text-decoration: underline;
           cursor: pointer;
         }
-        width: 689px;
+        
         .hot{
+          height: 523px;
           .hotNav{
             width: 689px;
             height: 35px;
@@ -108,7 +116,7 @@ a{
               }
             }
             .hotMore{
-              width: 5%;
+              width: 10%;
             }
           }
           .playListWrapper{
@@ -184,7 +192,7 @@ a{
           }
         }
         .new{
-          
+          height: 241px;
           .newContent{
             width: 100%;
             height: 186px;
@@ -195,13 +203,57 @@ a{
               height: 184px;
               background: #f5f5f5;
               border: 1px solid #fff;
+              
               .new-swiper-container{
                 width: 100%;
                 height: 100%;
                 position: relative;
                 overflow: hidden;
+                
+                
                 .swiper-button-prev::after,.swiper-button-next::after{
-                  font-size: 20px;
+                  font-size: 15px;
+                }
+                .swiper-button-prev{
+                  left:5px;
+                }
+                .swiper-button-next{
+                  right: 5px;
+                }
+                .swiper-slide{
+                  padding: 0 30px;
+                  margin-top: 28px;
+                  overflow: hidden;
+                  height: 150px;
+                  .slideItem{
+                    width: 118px;
+                    height: 150px;
+                    
+                    //background-color: #bfa;
+                    float: left;
+                    margin-left: 7px;
+                    .imgBlock{
+                      width: 118px;
+                      height: 100px;
+                      background-image: url(../../../static/img/coverall.png);
+                      background-position: 0 -570px;
+                      img{
+                        width: 100px;
+                        height: 100px;
+                      }
+                      
+                    }
+                    p{
+                      height: 18px;
+                      line-height: 18px;
+                      margin-bottom: 0;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                      white-space: nowrap;
+                      word-wrap: normal;
+                      width: 90%;
+                    }
+                  }
                 }
               }
             }
@@ -233,7 +285,7 @@ a{
           }
         }
         .topList{
-          height: 100%;
+          height: 543px;
           .play:hover{
             color: #666;
           }
@@ -250,6 +302,7 @@ a{
             }
             ul{
               width: 100%;
+              
               li:nth-child(2n){
                 background-color:rgb(245, 244, 244) ;
               }
@@ -329,7 +382,7 @@ a{
               .imgBlock{
                 width: 80px;
                 height: 80px;
-                background-color: #000;
+                //background-color: #000;
                 margin-right: 10px;
                 margin-bottom: 20px;
                 img{
@@ -361,11 +414,11 @@ a{
       }
       
     }
+    
     .rightWrapper{
       width: 250px;
-      border: 1px solid #eee;
-      
-      float: left;
+      height: 100%;
+      float: right;
       .login{
         width: 100%;
         height: 126px;
@@ -463,7 +516,11 @@ a{
           
         }
       }
+      .singer{
+        height: 460px;
+      }
       .anchor{
+        height: 451px;
         width: 100%;
         margin-top: 25px;
         padding: 0 15px;

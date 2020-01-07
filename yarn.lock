@@ -9467,6 +9467,11 @@ public-encrypt@^4.0.0:
     randombytes "^2.0.1"
     safe-buffer "^5.1.2"
 
+pubsub-js@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.npm.taobao.org/pubsub-js/download/pubsub-js-1.8.0.tgz#e2b523a030140a3d6e080735a48850a9622ed20a"
+  integrity sha1-4rUjoDAUCj1uCAc1pIhQqWIu0go=
+
 pump-chain@1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/pump-chain/download/pump-chain-1.0.0.tgz#7d57d8d9ad8181ea808f5413c4f2bc1e786a5e37"
@@ -11776,7 +11781,7 @@ swiper@^3.4.2:
 
 swiper@^5.2.1:
   version "5.2.1"
-  resolved "https://registry.npm.taobao.org/swiper/download/swiper-5.2.1.tgz?cache=0&sync_timestamp=1574249719653&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fswiper%2Fdownload%2Fswiper-5.2.1.tgz#72070777b9efb1318546ba48d7154939cd170196"
+  resolved "https://registry.npm.taobao.org/swiper/download/swiper-5.2.1.tgz?cache=0&sync_timestamp=1574250298651&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fswiper%2Fdownload%2Fswiper-5.2.1.tgz#72070777b9efb1318546ba48d7154939cd170196"
   integrity sha1-cgcHd7nvsTGFRrpI1xVJOc0XAZY=
   dependencies:
     dom7 "^2.1.3"
