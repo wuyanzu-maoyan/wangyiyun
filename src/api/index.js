@@ -18,6 +18,7 @@ export const reqRecommend = () => ajax.get('/top/playlist?limit=8&order=hot');
 //获取新碟上架
 
 export const reqNewList = () => ajax.get('/album/newest');
+export const reqNewList1 = () => ajax.get('/album/allest');
 
 
 //获取云音乐飙升榜
