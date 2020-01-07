@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {Switch} from 'react-router-dom'
+import {Switch,Route} from 'react-router-dom'
 import './App.less';
 
 import Header from './components/Header/Header.jsx'
@@ -11,9 +11,9 @@ export default class App extends Component{
       <div className="kjcAppContainer">
         <Header/>
         <div className="kjcContent">
-          {/* <Switch>
-
-          </Switch> */}
+          <Switch>
+            <Route path='/recommend' component={Recommend}/>
+          </Switch>
         </div>
         <Footer/>
       </div>
