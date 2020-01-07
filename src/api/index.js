@@ -32,7 +32,11 @@ export const reqRecommend = () => ajax.get('/top/playlist?limit=8&order=hot');
 //获取新碟上架
 
 export const reqNewList = () => ajax.get('/album/newest');
-export const reqNewList1 = () => ajax.get('/album/allest');
+export const reqNewList1 = () => ajax.get('/top/album?order=new&limit=1000&offset=15');
+export const reqNewList2 = () => ajax.get('/top/album?order=zh&limit=1000&offset=40');
+export const reqNewList3 = () => ajax.get('/top/album?order=EA&limit=1000&offset=150');
+export const reqNewList4 = () => ajax.get('/top/album?order=kr&limit=1000&offset=105');
+export const reqNewList5 = () => ajax.get('/top/album?order=JP&limit=1000&offset=200');
 
 
 //获取云音乐飙升榜
@@ -47,3 +51,7 @@ export const reqOriginalList =() => ajax.get('/top/list?idx=2');
 //获取入驻歌手
 
 export const reqSingerList =() => ajax.get('/artist/list?cat=5001');
+
+//带分页的评论
+export const reqCommentPage = ({id,limit,offset})=>ajax.get(`/comment/playlist?id=${id}&limit=${limit}&offset=${offset}`)
+
