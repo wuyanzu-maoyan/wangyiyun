@@ -3,7 +3,7 @@ import './css.less'
 export default class Huayu extends Component{
   render(){
     return (
-      <div className="content">
+      <div>
           <ul className="cvrlst">
             <li>
               <div className="cover"><img src="http://p3.music.126.net/R5hmBoVZt0I56BPiVic1aA==/109951164601146483.jpg?param=130y130"></img>
@@ -54,6 +54,14 @@ export default class Huayu extends Component{
               <p className="thide"><span><a>Justin Bieber</a></span></p>
             </li>
           </ul>
+          <div className="page">
+            <a className="zbtn znrv">上一页</a>
+            <a className="zpgi">1</a>
+            <a className="zpgi">2</a>
+            <a className="zpgi">3</a>
+            <a className="zpgi">4</a>
+            <a className="zbtn znxt">下一页</a>
+          </div>
       </div>
     )
   }
