@@ -85,17 +85,18 @@ class LeftNav extends Component{
     currentIndex:'' //显示的下标
   }
   getTopItem=async(name,index1,id)=>{
+
     let topListArr = [...this.state.topListArr]
    let idx = ''
    idx = topListArr.findIndex((item,index)=>{
       return item === name
     })
-    console.log(idx)
+
     if(idx !== -1){
      let result = await reqTopItem(idx)
      const {code,playlist} = result;
      if(code === 200){
-       console.log(playlist)
+
       this.props.setTopItem(playlist)
       PubSub.publish('getIndex',{index:index1,id})
      }
