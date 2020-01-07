@@ -336,38 +336,38 @@ export default class TopList extends Component{
                 <h2 className="kjcCommendName">评论</h2>
                 <span className="kjcCommendCount">共165468条评论</span>
               </div>
-              <div class="kjcCommendContent">
-                <div class="kjcWriteCommend">
+              <div className="kjcCommendContent">
+                <div className="kjcWriteCommend">
                   <img src="http://s4.music.126.net/style/web2/img/default/default_avatar.jpg?param=50y50" alt=""/>
-                  <div class="kjcCommendBox">
-                    <textarea class="kjcUserContent" placeholder="评论"></textarea>
-                    <i class="kjcArrow"></i>
-                    <div class="kjcUserBtns">
-                      <i class="kjcAt"></i>
-                      <i class="kjcExp"></i>
-                      <span class="kjcWord">140</span>
-                      <div class="kjcCommendBtn">评论</div>
+                  <div className="kjcCommendBox">
+                    <textarea className="kjcUserContent" placeholder="评论"></textarea>
+                    <i className="kjcArrow"></i>
+                    <div className="kjcUserBtns">
+                      <i className="kjcAt"></i>
+                      <i className="kjcExp"></i>
+                      <span className="kjcWord">140</span>
+                      <div className="kjcCommendBtn">评论</div>
                     </div>
                   </div>
                 </div>
-                <div class="kjcStarCommend">
-                  <div class="kjcStarTitle">精彩评论</div>
-                  <ul class="kjcStarList">
-                    <li class="kjcStarItem">
+                <div className="kjcStarCommend">
+                  <div className="kjcStarTitle">精彩评论</div>
+                  <ul className="kjcStarList">
+                    <li className="kjcStarItem">
                       <img src="https://p1.music.126.net/zoP7jqd1soAXDa1h0xCNLA==/109951164532777256.jpg?param=50y50" alt=""/>
-                      <div class="kjcStarItemContent">
-                          <div class="kjcStarTop">
-                            <span class="kjcUserName">发发火星一族 : </span>
-                            <span class="kjcUserContent">我们的《好想爱这个世界啊》还在飚</span>
+                      <div className="kjcStarItemContent">
+                          <div className="kjcStarTop">
+                            <span className="kjcUserName">发发火星一族 : </span>
+                            <span className="kjcUserContent">我们的《好想爱这个世界啊》还在飚</span>
                           </div>
-                          <div class="kjcStarBtns">
-                            <span class="kjcStarTime">11:02</span>
-                            <span class="kjcStarGood">
+                          <div className="kjcStarBtns">
+                            <span className="kjcStarTime">11:02</span>
+                            <span className="kjcStarGood">
                               <i></i>
-                              <span class="kjcStarCount">(11)</span>
+                              <span className="kjcStarCount">(11)</span>
                             </span>
                             <i>|</i>
-                            <span class="kjcResponse">回复</span>
+                            <span className="kjcResponse">回复</span>
                           </div>
                       </div>
                     </li>

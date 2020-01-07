@@ -6,13 +6,13 @@ import './css/Singer.less'
 export default class Singer extends Component{
   render(){
     return(
-      <div class="zxSingerContainer">
+      <div className="zxSingerContainer">
         {/* <LeftNav/> */}
-        <div class="zxSinger">
-          <div class="zxLeftNav">
+        <div className="zxSinger">
+          <div className="zxLeftNav">
 
           </div>
-          <div class="zxRight">
+          <div className="zxRight">
 
           </div>
         </div>
