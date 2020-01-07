@@ -26,7 +26,7 @@ export default class Header extends Component{
      },
      {
        name:'新碟上架',
-       path:'/new'
+       path:'/disc'
      }
     ]
     
