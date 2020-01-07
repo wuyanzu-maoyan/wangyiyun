@@ -1,123 +1,382 @@
 import React,{Component} from 'react'
+import {Icon} from 'antd'
+import Swiper from 'swiper'
+import 'swiper/css/swiper.min.css'
+import {
+  reqRadioCategories,
+  reqRadioRecommends,
+  reqRadioPlayList,
+  reqRadioHot
+} from '../../api'
 
 import './radio.less'
-import img1 from './images/1.jpg'
 
-export default class MyComponent extends Component{
+
+
+export default class Radio extends Component{
+  state = {
+    categories1:[],  //电台分类第1页
+    categories2:[],  //电台分类第2页
+    recommends:[],  //推荐电台
+    playList: [],  //节目排行榜
+    music: [],  //音乐故事 电台
+    meiwen: [],  //美文读物 电台
+    tuokouxiu: [],  //脱口秀 电台
+    qinggan: [],  //情感调频 电台
+    chuangzuo: [],  //创作翻唱 电台
+    renwen: [],  //人文历史 电台
+    activeIndex: -1,  //电台分类选中的index
+  }
+
+   //获取 电台分类
+  getRadioCategories = async ()=>{
+    let result = await reqRadioCategories()
+    // console.log(result);
+    if (result.code===200) {
+      const categories1 = result.categories.slice(0,18)
+      const categories2 = result.categories.slice(18,20)
+      this.setState({
+        categories1,
+        categories2
+      })
+    }
+  }
+  //获取 电台推荐
+  getRadioRecommends = async ()=>{
+    let result = await reqRadioRecommends()
+    // console.log(result);
+    if (result.code===200) {
+      this.setState({
+        recommends: result.djRadios
+      })
+    }
+  }
+  //获取 节目排行榜
+  getRadioPlayList = async()=>{
+    let result = await reqRadioPlayList(10)
+    // console.log(result);
+    if(result.code === 200){
+      const playList = result.toplist
+      this.setState({
+        playList
+      })
+    }
+  }
+  //获取 类别热门电台
+  getRadioHot = async()=>{
+    //请求音乐故事 电台
+    let musicResult = await reqRadioHot(2,1) //请求回来6条数据
+    // console.log(musicResult);
+    if(musicResult.code === 200){
+      const music = musicResult.djRadios.slice(0,4)
+      this.setState({
+        music
+      })
+    }
+    //请求美文读物 电台
+    let meiwenResult = await reqRadioHot(6,1) //请求回来6条数据
+    // console.log(meiwenResult);
+    if(meiwenResult.code === 200){
+      const meiwen = meiwenResult.djRadios.slice(0,4)
+      this.setState({
+        meiwen
+      })
+    }
+    //请求脱口秀 电台
+    let tuokouxiuResult = await reqRadioHot(5,1) //请求回来5条数据
+    // console.log(tuokouxiuResult);
+    if(tuokouxiuResult.code === 200){
+      const tuokouxiu = tuokouxiuResult.djRadios.slice(0,4)
+      this.setState({
+        tuokouxiu
+      })
+    }
+    //请求情感调频 电台
+    let qingganResult = await reqRadioHot(3,1) //请求回来8条数据
+    // console.log(qingganResult);
+    if(qingganResult.code === 200){
+      const qinggan = qingganResult.djRadios.slice(0,4)
+      this.setState({
+        qinggan
+      })
+    }
+    //请求创作|翻唱 电台
+    let chuangzuoResult = await reqRadioHot(2001,1) //请求回来6条数据
+    // console.log(chuangzuoResult);
+    if(chuangzuoResult.code === 200){
+      const chuangzuo = chuangzuoResult.djRadios.slice(0,4)
+      this.setState({
+        chuangzuo
+      })
+    }
+    //请求人文历史 电台
+    let renwenResult = await reqRadioHot(11,1) //请求回来5条数据
+    // console.log(renwenResult);
+    if(renwenResult.code === 200){
+      const renwen = renwenResult.djRadios.slice(0,4)
+      this.setState({
+        renwen
+      })
+    }
+  }
+  
+  componentDidMount(){
+    //轮播图
+    new Swiper('.swiper-container',{
+      // 如果需要分页器
+      pagination: {
+        el: '.swiper-pagination',
+      },
+      //前进后退按钮
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      observer:true,//修改swiper自己或子元素时，自动初始化swiper
+      observeParents:true,//修改swiper的父元素时，自动初始化swiper
+    })
+
+    //请求radio
+    this.getRadioCategories()  //请求电台分类
+    this.getRadioRecommends()  //请求热门电台
+    this.getRadioPlayList() //请求节目排行榜
+    this.getRadioHot() //根据id请求类别热门电台
+  }
+  
+  //切换分类高亮状态
+  toggleActiveType(index,id){
+    console.log(111);
+    console.log('id',id);
+    console.log(222);
+    this.setState({
+      activeIndex: index
+    })
+    window.location.href=`https://music.163.com/#/discover/djradio/category?id=${id}`  //在当前窗口跳转
+    // window.open('about:blank').location.href=`https://music.163.com/#/discover/djradio/category?id=${id}` //打开新窗口
+  }
+  
   render(){
+    let {categories1,categories2,recommends,playList,music,meiwen,tuokouxiu,qinggan,chuangzuo,renwen} = this.state
     return (
       <div id='radioContainer'>
         <div className="radioBg">
           <div className="radioWrap">
-            <div className="radioTypes">
+            <div className="swiper-container radioTypes">
               {/* 电台分类 */}
-              <div className="typeBoxes">
-                <ul className="pageOne">
-                  <li>
-                    <div className="img" style={{backgroundImage: 'url(https://p3.music.126.net/cCogGBNagepu5uAd-OuCKQ==/19119407695444318.jpg)'}}></div>
-                    <span>创作|翻唱</span>
+              <div className="swiper-wrapper typeBoxes">
+                <ul className="swiper-slide page pageOne">
+                  {
+                    categories1.map((category,index) => {
+                      return <li key={index} onClick={() => this.toggleActiveType(index,category.id)} className={index === this.state.activeIndex ? "activeType" : ""}>
+                        <div className="img">
+                          <img src={category.picWebUrl} alt=""/>
+                        </div>
+                        <span>{category.name}</span>
+                      </li>
+                    })
+                  }
+                </ul>
+                <ul className="swiper-slide page pageTwo" style={{marginLeft:'6px'}}>
+                  {
+                    categories2.map((category,index) => {
+                      return <li key={index} onClick={() => this.toggleActiveType(index,category.id)} className={index === this.state.activeIndex ? "activeType" : ""}>
+                        <div className="img">
+                          <img src={category.picWebUrl} alt=""/>
+                        </div>
+                        <span>{category.name}</span>
+                      </li>
+                    })
+                  }
+                  <li onClick={()=> window.location.href='https://music.163.com/#/topic?id=18652232'}>
+                    <div className="img">
+                      <Icon type="exception" style={{fontSize:'30px', lineHeight:'48px'}}/>
+                    </div>
+                    <span>常见问题</span>
                   </li>
-                  <li>
-                    <div className="img" style={{backgroundImage: 'url(https://p3.music.126.net/BVIacbDdjw90QjU4z7mZIw==/3389794351757648.jpg)'}}></div>
-                    <span>3D|电子</span>
-                  </li>
-                  <li>
-                    <div className="img" style={{backgroundImage: 'url(https://p3.music.126.net/RuluBZUC94KRYjx0eF7aHQ==/3223768093383533.jpg)'}}></div>
-                    <span>情感调频</span>
-                  </li>
-                  <li>
-                    <div className="img" style={{backgroundImage: 'url(https://p4.music.126.net/fNsFzMtgDByvOnpA0Kfehg==/3242459791054876.jpg)'}}></div>
-                    <span>音乐故事</span>
-                  </li>
-                  <li>
-                    <div className="img" style={{backgroundImage: 'url(https://p3.music.126.net/2jEyq6KuPUv0GgFOeDB0rA==/7731765766567381.jpg)'}}></div>
-                    <span>二次元</span>
-                  </li>
-                  <li>
-                    <div className="img" style={{backgroundImage: 'url(https://p4.music.126.net/jQo83vj8D0r3g0ydL1ujag==/18555358232264878.jpg)'}}></div>
-                    <span>有声书</span>
-                  </li>
-                  <li>
-                    <div className="img" style={{backgroundImage: 'url(https://p4.music.126.net/OQ-1zApxCjSxieFf63irwA==/19212866183939953.jpg)'}}></div>
-                    <span>知识技能</span>
-                  </li>
-                  <li>
-                    <div className="img" style={{backgroundImage: 'url(https://p3.music.126.net/27_UywB9VT7qTicVaUL2Ww==/19052337486286044.jpg)'}}></div>
-                    <span>商业财经</span>
-                  </li>
-                  <li>
-                    <div className="img" style={{backgroundImage: 'url(https://p4.music.126.net/fxNHDWCNVvRFa_3KAsBw6w==/3242459791054879.jpg)'}}></div>
-                    <span>人文历史</span>
-                  </li>
-                  <li>
-                    <div className="img" style={{backgroundImage: 'url(https://p3.music.126.net/tNg9R3kjzSAvYRU439sV-A==/18996262393228947.jpg)'}}></div>
-                    <span>外语世界</span>
-                  </li>
-                  <li>
-                    <div className="img" style={{backgroundImage: 'url(https://p3.music.126.net/WtEmxKotqvrOx02c7RwbdQ==/19167786207164648.jpg)'}}></div>
-                    <span>亲子宝贝</span>
-                  </li>
-                  <li>
-                    <div className="img" style={{backgroundImage: 'url(https://p3.music.126.net/DZV3wnLcYoc32YLnxoVCOg==/3240260767799323.jpg)'}}></div>
-                    <span>相声曲艺</span>
-                  </li>
-                  <li>
-                    <div className="img" style={{backgroundImage: 'url(https://p3.music.126.net/svlzt2aNhbHcAVRG1ae9nw==/19199672044369951.jpg)'}}></div>
-                    <span>美文读物</span>
-                  </li>
-                  <li>
-                    <div className="img" style={{backgroundImage: 'url(https://p4.music.126.net/QdPlGPCPc-QDdaIKuVq3RQ==/3236962232922745.jpg)'}}></div>
-                    <span>脱口秀</span>
-                  </li>
-                  <li>
-                    <div className="img" style={{backgroundImage: 'url(https://p4.music.126.net/MkrVCkXoJ7v29QXLBluUkw==/19167786207164651.jpg)'}}></div>
-                    <span>广播剧</span>
-                  </li>
-                  <li>
-                    <div className="img" style={{backgroundImage: 'url(https://p4.music.126.net/Jnx0K_M3Nc0Uk5YBXPifqw==/3249056860670081.jpg)'}}></div>
-                    <span>明星做主播</span>
-                  </li>
-                  <li>
-                    <div className="img" style={{backgroundImage: 'url(https://p3.music.126.net/8yoy33lYuvviDbcg1AOLUw==/3242459791054877.jpg)'}}></div>
-                    <span>娱乐|影视</span>
-                  </li>
-                  <li>
-                    <div className="img" style={{backgroundImage: 'url(https://p3.music.126.net/RLir9qUUGNolaxtMz-mPNA==/18896206835140215.jpg)'}}></div>
-                    <span>科技科学</span>
+                  <li style={{color: '#6ABCE9'}}>
+                    <div className="img">
+                      <Icon type="question-circle" style={{fontSize:'30px', lineHeight:'48px'}}/>
+                    </div>
+                    <span>我要做主播</span>
                   </li>
                 </ul>
               </div>
-              {/* 导航小圆点 */}
-              <div className="dots">
-                <span className="dot"></span>
-                <span className="dot"></span>
-              </div>
-              {/* 左右翻页 */}
-              <div className="turn prev"> ＜ </div>
-              <div className="turn next"> ＞ </div>
+              {/* <!-- 如果需要分页器 --> */}
+              <div className="dots swiper-pagination"></div>
+
+              {/* <!-- 如果需要导航按钮 --> */}
+              <div className="turn swiper-button-prev"></div>
+              <div className="turn swiper-button-next"></div>
             </div>
             <div className="radioPlay">
-              <div className="play recomment">
+              {/* 推荐节目 */}
+              <div className="play recommend">
                 <div className="title">
                   <h3>推荐节目</h3>
                   <span>更多 > </span>
                 </div>
                 <ul className="list">
-                  <li>
-                    <img src="http://p1.music.126.net/_ljpNzU6rSE04fpWqdU2YQ==/109951164598716309.jpg?param=40x40" alt=""/>
-                    <div className="middle">
-                      <h3>【发刊词】致抑郁者的一束光</h3>
-                      <p>7招快速改善抑郁</p>
-                    </div>
-                    <div className="btn">
-                      情感调频
-                    </div>
-                  </li>
+                  {
+                    recommends.map((recommend,index)=>{
+                      return <li key={index}>
+                        <img src={recommend.picUrl} alt=""/>
+                        <div className="middle">
+                          <h3>{recommend.name}</h3>
+                          <p>{recommend.rcmdtext}</p>
+                        </div>
+                        <div className="btn">{recommend.category}</div>
+                      </li>
+                    })
+                  }
                 </ul>
               </div>
+              {/* 节目排行榜 */}
               <div className="play playList">
-
+                <div className="title">
+                  <h3>节目排行榜</h3>
+                  <span>更多 > </span>
+                </div>
+                <ul className="list">
+                  {
+                    playList.map((play,index) =>{
+                      return <li key={index}>
+                        <div className="rank">
+                          <p>{play.rank}</p>
+                          <span>- 0</span>
+                        </div>
+                        <img src={play.program.coverUrl} alt="图片"/>
+                        <div className="middle">
+                          <h3>{play.program.name}</h3>
+                          <p>{play.program.radio.name}</p>
+                        </div>
+                        <div className="len">
+                          <i style={{width: `${(play.score)/300000*100}%`}}></i>
+                        </div>
+                      </li>
+                    })
+                  }
+                </ul>
               </div>
+            </div>
+            {/* 音乐故事 电台 */}
+            <div className="radio musicStory">
+              <div className="title">
+                <h3>音乐故事 . 电台</h3>
+                <span>更多></span>
+              </div>
+              <ul className="radioList musicList">
+                {
+                  music.map((music,index)=>{
+                    return <li key={index}>
+                      <img src={music.picUrl} alt=""/>
+                      <div className="radioInfo">
+                        <h3>{music.name}</h3>
+                        <p>{music.rcmdtext}</p>
+                      </div>
+                    </li>
+                  })
+                }
+              </ul>
+            </div>
+            {/* 美文读物 电台 */}
+            <div className="radio meiwen">
+              <div className="title">
+                <h3>美文读物 . 电台</h3>
+                <span>更多></span>
+              </div>
+              <ul className="radioList meiwenList">
+                {
+                  meiwen.map((meiwen,index)=>{
+                    return <li key={index}>
+                      <img src={meiwen.picUrl} alt=""/>
+                      <div className="radioInfo">
+                        <h3>{meiwen.name}</h3>
+                        <p>{meiwen.rcmdtext}</p>
+                      </div>
+                    </li>
+                  })
+                }
+              </ul>
+            </div>
+            {/* 脱口秀 电台 */}
+            <div className="radio tuokouxiu">
+              <div className="title">
+                <h3>脱口秀 . 电台</h3>
+                <span>更多></span>
+              </div>
+              <ul className="radioList tuokouxiuList">
+                {
+                  tuokouxiu.map((tuokouxiu,index)=>{
+                    return <li key={index}>
+                      <img src={tuokouxiu.picUrl} alt=""/>
+                      <div className="radioInfo">
+                        <h3>{tuokouxiu.name}</h3>
+                        <p>{tuokouxiu.rcmdtext}</p>
+                      </div>
+                    </li>
+                  })
+                }
+              </ul>
+            </div>
+            {/* 情感调频 电台 */}
+            <div className="radio qinggan">
+              <div className="title">
+                <h3>情感调频 . 电台</h3>
+                <span>更多></span>
+              </div>
+              <ul className="radioList qingganList">
+                {
+                  qinggan.map((qinggan,index)=>{
+                    return <li key={index}>
+                      <img src={qinggan.picUrl} alt=""/>
+                      <div className="radioInfo">
+                        <h3>{qinggan.name}</h3>
+                        <p>{qinggan.rcmdtext}</p>
+                      </div>
+                    </li>
+                  })
+                }
+              </ul>
+            </div>
+            {/* 创作翻唱 电台 */}
+            <div className="radio chuangzuo">
+              <div className="title">
+                <h3>创作|翻唱 . 电台</h3>
+                <span>更多></span>
+              </div>
+              <ul className="radioList chuangzuoList">
+                {
+                  chuangzuo.map((chuangzuo,index)=>{
+                    return <li key={index}>
+                      <img src={chuangzuo.picUrl} alt=""/>
+                      <div className="radioInfo">
+                        <h3>{chuangzuo.name}</h3>
+                        <p>{chuangzuo.rcmdtext}</p>
+                      </div>
+                    </li>
+                  })
+                }
+              </ul>
+            </div>
+            {/* 人文历史 电台 */}
+            <div className="radio renwen">
+              <div className="title">
+                <h3>人文历史 . 电台</h3>
+                <span>更多></span>
+              </div>
+              <ul className="radioList renwenList">
+                {
+                  renwen.map((renwen,index)=>{
+                    return <li key={index}>
+                      <img src={renwen.picUrl} alt=""/>
+                      <div className="radioInfo">
+                        <h3>{renwen.name}</h3>
+                        <p>{renwen.rcmdtext}</p>
+                      </div>
+                    </li>
+                  })
+                }
+              </ul>
             </div>
           </div>
         </div>
@@ -125,3 +384,4 @@ export default class MyComponent extends Component{
     )
   }
 }
+// export default Radio
