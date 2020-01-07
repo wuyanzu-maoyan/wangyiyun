@@ -5,7 +5,7 @@ import RightContent from './RightContent/RightContent'
 import {reqTopList,reqTopItem,reqCommentList} from '../../api'
 import {connect} from 'react-redux'
 import {createGetTopListAction,createGetTopItemAction,createGetCommentListAction} from '../../redux/action_creator/topList_action'
-import {Switch,Route} from 'react-router-dom'
+import {Switch,Route,Redirect} from 'react-router-dom'
 
 @connect(state=>({}),{
   setTopList:createGetTopListAction,
@@ -45,7 +45,7 @@ class TopList extends Component{
          <LeftNav></LeftNav>
         <Switch>
           <Route path="/toplist/rc/:name" component={RightContent}></Route>
- 
+          <Redirect to='/toplist/rc/云音乐飙升榜'></Redirect>
         </Switch>
       </div>
      )
