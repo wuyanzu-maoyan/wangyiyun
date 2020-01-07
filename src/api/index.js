@@ -39,3 +39,7 @@ export const reqOriginalList =() => ajax.get('/top/list?idx=2');
 //获取入驻歌手
 
 export const reqSingerList =() => ajax.get('/artist/list?cat=5001');
+
+//带分页的评论
+export const reqCommentPage = ({id,limit,offset})=>ajax.get(`/comment/playlist?id=${id}&limit=${limit}&offset=${offset}`)
+
