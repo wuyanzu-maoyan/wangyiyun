@@ -1,7 +1,41 @@
 import React,{Component} from 'react'
 import './css/header.less';
-export default class MyComponent extends Component{
+import {NavLink} from 'react-router-dom'
+export default class Header extends Component{
+  state={
+    routeList:[
+     {
+      name:'推荐',
+      path:'/recommend'
+      }, 
+     {
+       name:'排行榜',
+       path:'/toplist'
+     },
+     {
+       name:'歌单',
+       path:'/songlist'
+     },
+     {
+       name:'主播电台',
+       path:'/radio'
+     },
+     {
+       name:'歌手',
+       path:'/singer'
+     },
+     {
+       name:'新碟上架',
+       path:'/disc'
+     }
+    ]
+    
+  }
+  checkActive(event){
+    console.log(event)
+  }
   render(){
+    let {routeList} = this.state
     return (
     <div className="kjcTop">
       <div className="kjcTopBar w">
@@ -32,13 +66,15 @@ export default class MyComponent extends Component{
       <nav className="kjcNav  clearfix">
           <div className="kjcNavRed w">
               <ul>
-                  <li className="active">推荐</li>
-                  <li>排行榜</li>
-                  <li>歌单<i className="kjcR"></i></li>
-                  <li>主播电台</li>
-                  <li>歌手</li>
-                  <li>新碟上架</li>
-                  
+                {
+                    routeList.map((item,index)=>{
+                    if(index===2){
+                      return <NavLink key={index} to={item.path}><li  onClick={this.checkActive}>{item.name}<i className="kjcR"></i></li></NavLink>
+                     }else{
+                      return <NavLink key={index}  to={item.path}> <li onClick={this.checkActive}>{item.name}</li></NavLink>
+                      }
+                    })
+                }
               </ul>
           </div>
       </nav>

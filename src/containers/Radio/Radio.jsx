@@ -1,7 +1,6 @@
 import React,{Component} from 'react'
 import {Icon} from 'antd'
-// import classna mes from 'classnames'
-// import Swiper from 'swiper/dist/js/swiper.js'
+import Swiper from 'swiper'
 import 'swiper/css/swiper.min.css'
 import {
   reqRadioCategories,
@@ -11,7 +10,7 @@ import {
 } from '../../api'
 
 import './radio.less'
-import Swiper from   'swiper'
+
 
 
 export default class Radio extends Component{
