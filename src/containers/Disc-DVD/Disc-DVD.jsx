@@ -6,7 +6,18 @@ import Hanguo from './Disc-DVD.1/hanguo'
 import Huayu from './Disc-DVD.1/huayu'
 import Riben from './Disc-DVD.1/riben'
 import Oumei from './Disc-DVD.1/oumei'
-export default class MyComponent extends Component{
+import { reqAlbumList } from "../../api/index";
+ class DiscDVD extends Component{
+  state={
+    albumList:[]
+  }
+  componentDidMount(){
+    this.getAlbumList()
+  }
+  getAlbumList = async()=>{
+    let result = await reqAlbumList
+    console.log(result)
+  }
   render(){
     return (
       <div>
@@ -94,3 +105,4 @@ export default class MyComponent extends Component{
     )
   }
 }
+export default DiscDVD

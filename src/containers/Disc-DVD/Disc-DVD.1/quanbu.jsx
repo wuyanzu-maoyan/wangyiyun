@@ -1,6 +1,8 @@
 import React,{Component} from 'react'
 import './css.less'
-export default class Quanbu extends Component{
+import { reqAlbumList } from "../../../api/index";
+ class Quanbu extends Component{
+ 
   render(){
     return (
       <div >
@@ -66,3 +68,4 @@ export default class Quanbu extends Component{
     )
   }
 }
+export default Quanbu
