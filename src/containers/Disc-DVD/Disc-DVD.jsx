@@ -15,7 +15,7 @@ import { reqAlbumList } from "../../api/index";
     this.getAlbumList()
   }
   getAlbumList = async()=>{
-    let result = await reqAlbumList
+    let result = await reqAlbumList()
     console.log(result)
   }
   render(){
