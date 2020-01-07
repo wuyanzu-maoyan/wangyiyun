@@ -27,9 +27,9 @@ export default class Recommend extends Component {
     if (code === 200) {
 
       this.setState({ mvList: result },() => {
-        var mySwiper = new Swiper ('.swiper-container', {
+        new Swiper ('.small-swiper-container', {
           loop: true, // 循环模式选项
-          
+          autoplay:true,
         
           // 如果需要分页器
           pagination: {
@@ -42,6 +42,10 @@ export default class Recommend extends Component {
             prevEl: '.swiper-button-prev',
           },
         })
+        // new Swiper ('.big-swiper-container', {
+        //   loop: true, // 循环模式选项
+        //   autoplay:true
+        // })
       })
 
     }
@@ -149,40 +153,45 @@ export default class Recommend extends Component {
       <div className='RecommendContainer'>
 
         <div className='MVWrapper'>
-
-          <div className="swiper-container">
-            <div className="swiper-wrapper">
-              {
-                this.state.mvList.map((item,index) => {
-                  return (
-                    <div className="swiper-slide" key={item.id}>
-                      <img src={item.picUrl} alt="" />
-                    </div>
-                  )
-                })
-              }
-              {/* <div className="swiper-slide" >
-                111
-              </div>
-              <div className="swiper-slide" >
-                222
-              </div>
-               */}
-              
+          {/* <div className="bigSwiper">
+            <div class="big-swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">Slide 1</div>
+                    <div class="swiper-slide">Slide 2</div>
+                    <div class="swiper-slide">Slide 3</div>
+                </div>
             </div>
-
-
-            <div className="swiper-pagination"></div>
-            <div className="swiper-button-prev"></div>
-            <div className="swiper-button-next"></div>
+          </div> */}
+          <div className="MV">
+            <div className="small-swiper">
+              <div class="small-swiper-container">
+                <div class="swiper-wrapper">
+                  {
+                    this.state.mvList.map((item,index) => {
+                      return (
+                        <div class="swiper-slide" key={index}>
+                          <img src={item.picUrl} alt=""/>
+                        </div>
+                      )
+                    })
+                  }
+                    
+                </div>
+                
+                <div class="swiper-pagination"></div>
+              </div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+              
+              </div>
             <div className="download">
               <a href=""></a>
               <p>PC 安卓 iPhone WP iPad Mac 六大客户端</p>
             </div>
+
+
           </div>
-
-
-
+          
 
         </div>
         <div className="contentWrapper clearfix">
