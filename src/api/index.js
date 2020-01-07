@@ -1,11 +1,24 @@
 
 import ajax from './myAxios'
-import { LIMIT,ORDER } from "../config/index";
 
 //获取歌手列表
 export const reqArtistList = (cat,initial) => ajax.get(`/artist/list?cat=${cat}&initial=${initial}`)
+
+//获取主播电台
+export const reqRadioCategories = ()=> ajax.get('/dj/catelist') //请求电台分类
+export const reqRadioRecommends = ()=> ajax.get('/dj/recommend') //请求推荐节目
+export const reqRadioPlayList = (limit) => ajax.get(`/dj/program/toplist?limit=${limit}`)  //请求节目排行榜
+export const reqRadioHot = (cateId,limit) => ajax.get(`/dj/radio/hot?cateId=${cateId}&limit=${limit}`)  //根据id请求类别热门电台
+
+
+//获取排行榜列表
+export const reqTopList = () => ajax.get('/toplist')
+//根据idx的值获取某个排行榜
+export const reqTopItem = (idx)=> ajax.get(`/top/list?idx=${idx}`);
+//根据id与type值获取当前歌单的评论列表
+export const reqCommentList = ({id})=> ajax.get(`/comment/playlist?id=${id}`)
 //获取碟片信息
-export const reqAlbumList = () =>ajax.get(`/top/playlist?limit=${LIMIT}&order=${ORDER}`)
+export const reqAlbumList = () =>ajax.get('/top/album?order=new&limit=10&')
 
 //请求轮播图的歌曲
 export const reqMVlist = () => ajax.get('personalized/mv');
@@ -19,6 +32,7 @@ export const reqRecommend = () => ajax.get('/top/playlist?limit=8&order=hot');
 //获取新碟上架
 
 export const reqNewList = () => ajax.get('/album/newest');
+export const reqNewList1 = () => ajax.get('/album/allest');
 
 
 //获取云音乐飙升榜
@@ -33,3 +47,7 @@ export const reqOriginalList =() => ajax.get('/top/list?idx=2');
 //获取入驻歌手
 
 export const reqSingerList =() => ajax.get('/artist/list?cat=5001');
+
+//带分页的评论
+export const reqCommentPage = ({id,limit,offset})=>ajax.get(`/comment/playlist?id=${id}&limit=${limit}&offset=${offset}`)
+

@@ -9,6 +9,7 @@ import SongList from './containers/SongList/SongList.jsx';
 import TopList from './containers/TopList/TopList.jsx';
 import Header from './components/Header/Header.jsx';
 import Footer from './components/Footer/Footer.jsx'
+// import Recommend from './containers/Recommend/Recommend';
 import Disc from './containers/Disc-DVD/Disc-DVD'
 
 export default class App extends Component{
