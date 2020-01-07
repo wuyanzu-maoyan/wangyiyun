@@ -34,10 +34,21 @@ export default class Header extends Component{
   checkActive(event){
     console.log(event)
   }
+  componentDidMount(){
+    window.onscroll = (event)=>{
+      console.log(document.documentElement.scrollTop)
+      if(document.documentElement.scrollTop > 0){
+        this.refs.kjcFix.style.display = 'block'
+      }else{
+        this.refs.kjcFix.style.display = 'none'
+      }
+     
+    }
+  }
   render(){
     let {routeList} = this.state
     return (
-    <div className="kjcTop">
+    <div className="kjcTop" id="top">
       <div className="kjcTopBar w">
         <div className="kjcW">
         <div className="kjcLogo">
@@ -78,6 +89,7 @@ export default class Header extends Component{
               </ul>
           </div>
       </nav>
+      <a className="kjcFix" ref="kjcFix" title="回到顶部" href="#top"></a>
   </div>
     )
   }

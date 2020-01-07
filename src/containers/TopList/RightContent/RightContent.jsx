@@ -4,8 +4,9 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import dayjs from 'dayjs'
 import PubSub from 'pubsub-js'
-import {reqCommentList} from '../../../api'
+import {reqCommentList,reqCommentPage} from '../../../api'
 import {createGetCommentListAction} from '../../../redux/action_creator/topList_action'
+import { Pagination } from 'antd';
 
 @connect(state=>({
   topItem:state.topItem,
@@ -20,22 +21,43 @@ import {createGetCommentListAction} from '../../../redux/action_creator/topList_
 @withRouter
 class RightContent extends Component{
   state={
-    currentIndex:0
+    currentIndex:0,
+    songListId:19723756
+  }
+  componentWillUnmount(){
+    PubSub.unsubscribe('getIndex')
   }
   componentDidMount(){
-    console.log(dayjs(1578381324712).format('MM月DD日'))
-    console.log(this.props.match.params.name)
+
     PubSub.subscribe('getIndex',async(a,{index,id})=>{
-    
+      this.setState({songListId:id})
       this.setState({currentIndex:index*1})
-      let result = await reqCommentList(id)
+      let result = await reqCommentList({id})
       const {code,hotComments,comments,total} = result;
       if(code === 200){
         this.props.setComments({hotComments,comments,total})
       }
     })
   }
+  itemRender = (current, type, originalElement) => {
+    if (type === 'prev') {
+      return <a> 上一页 </a>;
+    }
+    if (type === 'next') {
+      return <a> 下一页 </a>;
+    }
+    return originalElement;
+  }
 
+  onChange = async(page,pageSize)=>{
+    console.log(page,pageSize)
+    let {songListId} = this.state
+    let result = await reqCommentPage({id:songListId,limit:pageSize,offset:((page-1)*pageSize)})
+    const {code,hotComments,comments,total} = result;
+    if(code === 200){
+    this.props.setComments({hotComments,comments,total})
+    }
+  } 
 
   render(){
     let {currentIndex} = this.state;
@@ -180,7 +202,7 @@ class RightContent extends Component{
               </div>
             </div>
             <div className="kjcStarCommend">
-              <div className="kjcStarTitle">精彩评论</div>
+              <div className="kjcStarTitle" style={{display:commentList.length?'block':'none'}}>精彩评论</div>
               <ul className="kjcStarList">
                 {
                  commentList.map((item,index)=>{
@@ -207,7 +229,7 @@ class RightContent extends Component{
                   })
                 }
               </ul>
-              <div className="kjcNewTitle">最新评论 ({total})</div>
+              <div className="kjcNewTitle" style={{display:comments.length?'block':'none'}}>最新评论 ({total})</div>
 
               <ul className="kjcStarList">
                 {
@@ -236,10 +258,14 @@ class RightContent extends Component{
                   })
                 }
               </ul>
+              
             </div>
+            <Pagination onChange={this.onChange} pageSize={20} size='middle' style={{marginLeft:'130px'}} total={total} itemRender={this.itemRender} />
+
           </div>
      
       </div>
+     
     </div>
     )
   }
