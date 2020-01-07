@@ -26,6 +26,7 @@
   min-height: 700px;
   margin: 0 auto;
   padding: 40px;
+  overflow: hidden;
   background: #fff;
   border: 1px solid #d3d3d3;
   border-width: 0 1px;
@@ -35,47 +36,95 @@
     height: 100%;
     .radioTypes{
       position: relative;
-      width: 900px;
+      width: 933px;
       height: 194px;
       margin-bottom: 20px;
+      overflow: visible;
       .typeBoxes{
-        width: 933px;
         height: 194px;
-        margin-left: -33px;
-        ul{
+        .page{
+          display: flex;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+          // flex-shrink: 1;
+          width: 933px;
+          height: 194px;
+          margin-left: -33px;
           li{
-            float: left;
             width: 70px;
             height: 72px;
             margin: 0 0 25px 33px;
             color: #888;
             text-align: center;
             cursor: pointer;
+            &:hover{
+              background: #eee;
+            }
             .img{
               width: 48px;
               height: 48px;
-              background-position: 0 0;
-              margin: 2px auto 0;
+              // background-position: 0 0;
+              margin: 0 auto;
+              overflow: hidden;
+              img{
+                width: 96px;
+                height: 48px;
+                max-width: 400%;
+              }
+            }
+            span{
+              font-size: 11px;
+            }
+            &.activeType{
+              border: 2px solid #d35757;
+              border-radius: 4px;
+              opacity: .9;
+              .img{
+                img{
+                  margin-left: -48px;
+                }
+              }
+              
+              span{
+                color: #d35757;
+              }
             }
           }
         }
       }
+      
       .dots{
+        position: absolute;
+        left: 0;
+        bottom: 0;
         width: 100%;
         height: 20px;
         text-align: center;
-        line-height: 20px;
-        .dot{
+        .swiper-pagination-bullet{
+          display: inline-block;
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #666;
+          margin: 0 10px ;
+          line-height: 20px;
+          cursor: pointer;
+          &.swiper-pagination-bullet-active{
+            background: #C20C0C;
+          }
+        }
+        /* .dot{
           display: inline-block;
           width: 6px;
           height: 6px;
           border-radius: 50%;
           background: #ccc;
           margin: 0 10px ;
+          cursor: pointer;
           &:hover{
             background: #C20C0C;
           }
-        }
+        } */
       }
       .turn{
         position: absolute;
@@ -83,26 +132,28 @@
         margin-top: -15px;
         width: 20px;
         height: 30px;
-        font-size: 26px;
+        // font-size: 30px;
         color: #ccc;
         text-align: center;
         line-height: 30px;
+        overflow: hidden;
+        cursor: pointer;
         &:hover{
           color: #aaa;
         }
       }
-      .prev{
-        left: -30px;
+      .swiper-button-prev{
+        left: -20px;
       }
-      .next{
-        right: -15px;
+      .swiper-button-next{
+        right: 12px;
       }
     }
     .radioPlay{
       display: flex;
       justify-content: space-between;
       margin-top: 10px;
-      .recomment{
+      .recommend{
         // float: left;
         li{
           img{
@@ -120,7 +171,9 @@
             margin: 10px 0 0 10px;
             line-height: 16px;
             text-align: center;
+            font-size: 11px;
             color: #999;
+            cursor: pointer;
           }
         }
       }
@@ -133,14 +186,18 @@
             height: 34px;
             padding-top: 5px;
             text-align: center;
-            line-height: 17px;
+            line-height: 5px;
             p{
               font-size: 14px;
+              font-weight: bold;
               color: #da4545;
             }
             span{
               font-size: 8px;
-              color: #348B3E;
+              font-weight: bold;
+              color: #666;
+              opacity: 0.6;
+              // color: #348B3E;
             }
           }
           .middle{
@@ -180,6 +237,7 @@
             height: 60px;
             padding: 10px 0;
             line-height: 40px;
+            overflow: hidden;
             &:nth-child(even){
               background: #F7F7F7;
             }
@@ -191,15 +249,21 @@
               float: left;
               width: 40px;
               height: 40px;
+              cursor: pointer;
             }
             .middle{
               float: left;
-              margin: 1px 0 0 10px;
+              margin-left: 10px;
               line-height: 20px;
               h3,p{
+                font-size: 11px;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
+                cursor: pointer;
+                &:hover{
+                  text-decoration: underline;
+                }
               }
               p{
                 color: #999;
@@ -215,14 +279,20 @@
       height: 364px;
       margin-top: 35px;
       .radioList{
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        width: 930px;
+        height: 322px;
         margin-left: -30px;
         li{
-          float: left;
+          // float: left;
           width: 435px;
           height: 161px;
           border-bottom: 1px solid #e7e7e7;
           padding: 20px 0;
           margin-left: 30px;
+          // overflow: hidden;
           &:nth-child(3),&:nth-child(4){
             border-bottom: none;
           }
@@ -240,14 +310,36 @@
               font-size: 18px;
               font-weight: bold;
               cursor: pointer;
+              &:hover{
+                text-decoration: underline;
+              }
             }
             p{
               margin-bottom: 6px;
               line-height: 20px;
+              font-size: 11px;
               color: #999;
             }
           }
         }
+        // .musicLi1{
+        //   margin-left: -164px;
+        // }
+        // .meiwenLi1{
+        //   margin-left: -164px;
+        // }
+        // .tuokouxiuLi1{
+        //   margin-left: -140px;
+        // }
+        // .qingganLi1{
+        //   margin-left: -164px;
+        // }
+        // .chuangzuoLi1{
+        //   margin-left: -170px;
+        // }
+        // .renwenLi1{
+        //   margin-left: -164px;
+        // }
       }
     }
   }
