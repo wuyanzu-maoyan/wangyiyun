@@ -1,6 +1,23 @@
 import React,{Component} from 'react'
 import './Disc-DVD.less'
-export default class MyComponent extends Component{
+import { Route ,NavLink} from "react-router-dom";
+import Quanbu from './Disc-DVD.1/quanbu.jsx'
+import Hanguo from './Disc-DVD.1/hanguo'
+import Huayu from './Disc-DVD.1/huayu'
+import Riben from './Disc-DVD.1/riben'
+import Oumei from './Disc-DVD.1/oumei'
+import { reqAlbumList } from "../../api/index";
+ class DiscDVD extends Component{
+  state={
+    albumList:[]
+  }
+  componentDidMount(){
+    this.getAlbumList()
+  }
+  getAlbumList = async()=>{
+    let result = await reqAlbumList()
+    console.log(result)
+  }
   render(){
     return (
       <div>
@@ -14,7 +31,7 @@ export default class MyComponent extends Component{
             <li>
               <div className="cover"><img src="http://p3.music.126.net/R5hmBoVZt0I56BPiVic1aA==/109951164601146483.jpg?param=130y130"></img>
               <a href="/album?id=84698311" className="msk" title="Yummy"></a>
-              <a href="" className="icon-play f-alpha f-fr" title="播放" data-res-type="19" data-res-id="84698311" data-res-action="play"></a>
+              <a href="#" className="icon-play f-alpha f-fr" title="播放" data-res-type="19" data-res-id="84698311" data-res-action="play"></a>
               </div>
               <p className="dec"><a>Yummy</a></p>
               <p className="thide"><span><a>Justin Bieber</a></span></p>
@@ -22,7 +39,7 @@ export default class MyComponent extends Component{
             <li>
               <div className="cover"><img src="http://p3.music.126.net/R5hmBoVZt0I56BPiVic1aA==/109951164601146483.jpg?param=130y130"></img>
               <a href="/album?id=84698311" className="msk" title="Yummy"></a>
-              <a href="" className="icon-play f-alpha f-fr" title="播放" data-res-type="19" data-res-id="84698311" data-res-action="play"></a>
+              <a href="#" className="icon-play f-alpha f-fr" title="播放" data-res-type="19" data-res-id="84698311" data-res-action="play"></a>
               </div>
               <p className="dec"><a>Yummy</a></p>
               <p className="thide"><span><a>Justin Bieber</a></span></p>
@@ -30,7 +47,7 @@ export default class MyComponent extends Component{
             <li>
               <div className="cover"><img src="http://p3.music.126.net/R5hmBoVZt0I56BPiVic1aA==/109951164601146483.jpg?param=130y130"></img>
               <a href="/album?id=84698311" className="msk" title="Yummy"></a>
-              <a href="" className="icon-play f-alpha f-fr" title="播放" data-res-type="19" data-res-id="84698311" data-res-action="play"></a>
+              <a href="#" className="icon-play f-alpha f-fr" title="播放" data-res-type="19" data-res-id="84698311" data-res-action="play"></a>
               </div>
               <p className="dec"><a>Yummy</a></p>
               <p className="thide"><span><a>Justin Bieber</a></span></p>
@@ -38,7 +55,7 @@ export default class MyComponent extends Component{
             <li>
               <div className="cover"><img src="http://p3.music.126.net/R5hmBoVZt0I56BPiVic1aA==/109951164601146483.jpg?param=130y130"></img>
               <a href="/album?id=84698311" className="msk" title="Yummy"></a>
-              <a href="" className="icon-play f-alpha f-fr" title="播放" data-res-type="19" data-res-id="84698311" data-res-action="play"></a>
+              <a href="#" className="icon-play f-alpha f-fr" title="播放" data-res-type="19" data-res-id="84698311" data-res-action="play"></a>
               </div>
               <p className="dec"><a>Yummy</a></p>
               <p className="thide"><span><a>Justin Bieber</a></span></p>
@@ -46,7 +63,7 @@ export default class MyComponent extends Component{
             <li>
               <div className="cover"><img src="http://p3.music.126.net/R5hmBoVZt0I56BPiVic1aA==/109951164601146483.jpg?param=130y130"></img>
               <a href="/album?id=84698311" className="msk" title="Yummy"></a>
-              <a href="" className="icon-play f-alpha f-fr" title="播放" data-res-type="19" data-res-id="84698311" data-res-action="play"></a>
+              <a href="#" className="icon-play f-alpha f-fr" title="播放" data-res-type="19" data-res-id="84698311" data-res-action="play"></a>
               </div>
               <p className="dec"><a>Yummy</a></p>
               <p className="thide"><span><a>Justin Bieber</a></span></p>
@@ -54,7 +71,7 @@ export default class MyComponent extends Component{
             <li>
               <div className="cover"><img src="http://p3.music.126.net/R5hmBoVZt0I56BPiVic1aA==/109951164601146483.jpg?param=130y130"></img>
               <a href="/album?id=84698311" className="msk" title="Yummy"></a>
-              <a href="" className="icon-play f-alpha f-fr" title="播放" data-res-type="19" data-res-id="84698311" data-res-action="play"></a>
+              <a href="#" className="icon-play f-alpha f-fr" title="播放" data-res-type="19" data-res-id="84698311" data-res-action="play"></a>
               </div>
               <p className="dec"><a>Yummy</a></p>
               <p className="thide"><span><a>Justin Bieber</a></span></p>
@@ -65,20 +82,27 @@ export default class MyComponent extends Component{
               <span>全部新碟</span>
             </h3>
           
-            <div>
-              <a>全部</a>
+            <div className="areaList">
+              <NavLink to='/disc/quanbu'>全部</NavLink>
               <span>|</span>
-              <a>华语</a>
+              <NavLink to='/disc/huayu'>华语</NavLink> 
               <span>|</span>
-              <a>欧美</a>
+              <NavLink to='/disc/oumei'>欧美</NavLink>
               <span>|</span>
-              <a>韩国</a>
+              <NavLink to='/disc/hanguo'>韩国</NavLink>
               <span>|</span>
-              <a>日本</a>
+              <NavLink to='/disc/riben'>日本</NavLink>
             </div>
           </div>
+          <Route path='/disc/quanbu' component={Quanbu}></Route>
+          <Route path='/disc/oumei' component={Oumei}></Route>
+          <Route path='/disc/huayu' component={Huayu}></Route>
+          <Route path='/disc/riben' component={Riben}></Route>
+          <Route path='/disc/hanguo' component={Hanguo}></Route>
         </div>
+       
       </div>
     )
   }
 }
+export default DiscDVD
