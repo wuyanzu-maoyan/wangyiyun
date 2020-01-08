@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import dayjs from 'dayjs'
 import PubSub from 'pubsub-js'
-import {reqCommentList,reqCommentPage} from '../../../api'
+import {reqCommentList,reqCommentPage,reqSongUrl} from '../../../api'
 import {createGetCommentListAction} from '../../../redux/action_creator/topList_action'
 import { Pagination } from 'antd';
 
@@ -22,7 +22,10 @@ import { Pagination } from 'antd';
 class RightContent extends Component{
   state={
     currentIndex:0,
-    songListId:19723756
+    songListId:19723756,
+    musicUrl:'',
+    isPlay:false,//是否播放
+    id:0, //歌曲的id
   }
   componentWillUnmount(){
     PubSub.unsubscribe('getIndex')
@@ -49,6 +52,24 @@ class RightContent extends Component{
     return originalElement;
   }
 
+  openMusic = async(id)=>{
+  console.log(id)
+    let result = await reqSongUrl(id)
+    const {code,data} = result;
+    console.log(data[0].url)
+    if(code === 200){
+      this.setState({musicUrl:data[0].url},()=>{
+        this.refs.audio.src = this.state.musicUrl
+        this.setState({id})
+       if(id === this.state.id){
+        this.refs.audio.pause()
+       }else {
+        this.refs.audio.play()
+       }       
+      })
+    }
+  }
+
   onChange = async(page,pageSize)=>{
     console.log(page,pageSize)
     let {songListId} = this.state
@@ -60,10 +81,13 @@ class RightContent extends Component{
   } 
 
   render(){
-    let {currentIndex} = this.state;
+    let {currentIndex,musicUrl,id} = this.state;
     let {topItem,topList,playList,total,commentList,comments} = this.props;
     return(
       <div className="kjcRightContent">
+      <audio ref="audio" src="">
+        
+      </audio>
       <div className="kjcContentHeader">
         <div className="kjcImgWrap">
          <img src={topItem.coverImgUrl} alt=""/>
@@ -77,7 +101,7 @@ class RightContent extends Component{
           </div>
           <div className="kjcBtns">
             <div className="kjcPlay">
-              <span>
+              <span onClick={()=>{this.openMusic(id)}}>
                 <em className="ply"></em>
                 播放
               </span>
@@ -119,7 +143,7 @@ class RightContent extends Component{
                     </div>
                     <div className="kjcSongContent">
                       <img src={item.al.picUrl} alt=""/>
-                      <span className="kjcOpen">&nbsp;</span>
+                      <span className="kjcOpen" onClick={()=>{this.openMusic(item.id,index)}}>&nbsp;&nbsp;</span>
                       <div className="kjcSingerContent">
                           {item.name}&nbsp;
                       </div>
@@ -150,7 +174,7 @@ class RightContent extends Component{
                     <div className="kjcSongRank new"></div>
                   </div>
                   <div className="kjcSongContent">
-                    <span className="kjcOpen">&nbsp;</span>
+                    <span className="kjcOpen" onClick={()=>{this.openMusic(item.id,index)}}>&nbsp;</span>
                     <div className="kjcSingerContent">
                     {item.name}&nbsp;
                     </div>
