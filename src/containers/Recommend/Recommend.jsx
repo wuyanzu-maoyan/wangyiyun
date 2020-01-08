@@ -27,9 +27,9 @@ export default class Recommend extends Component {
     if (code === 200) {
 
       this.setState({ mvList: result },() => {
-        var mySwiper = new Swiper ('.swiper-container', {
+        new Swiper ('.small-swiper-container', {
           loop: true, // 循环模式选项
-          
+          autoplay:true,
         
           // 如果需要分页器
           pagination: {
@@ -42,6 +42,10 @@ export default class Recommend extends Component {
             prevEl: '.swiper-button-prev',
           },
         })
+        // new Swiper ('.big-swiper-container', {
+        //   loop: true, // 循环模式选项
+        //   autoplay:true
+        // })
       })
 
     }
@@ -143,46 +147,63 @@ export default class Recommend extends Component {
     
   }
   
-
+  toSongList = (category) => {
+    this.props.history.push('/songlist');
+  }
+  toDisc = () => {
+    this.props.history.push('/disc')
+  }
+  toTopList = () => {
+    this.props.history.push('/toplist')
+  }
+  toSinger = (event) => {
+    event.preventDefault();
+    this.props.history.push('/singer');
+  }
   render() {
     return (
       <div className='RecommendContainer'>
 
         <div className='MVWrapper'>
-
-          <div className="swiper-container">
-            <div className="swiper-wrapper">
-              {
-                this.state.mvList.map((item,index) => {
-                  return (
-                    <div className="swiper-slide" key={item.id}>
-                      <img src={item.picUrl} alt="" />
-                    </div>
-                  )
-                })
-              }
-              {/* <div className="swiper-slide" >
-                111
-              </div>
-              <div className="swiper-slide" >
-                222
-              </div>
-               */}
-              
+          {/* <div className="bigSwiper">
+            <div class="big-swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">Slide 1</div>
+                    <div class="swiper-slide">Slide 2</div>
+                    <div class="swiper-slide">Slide 3</div>
+                </div>
             </div>
-
-
-            <div className="swiper-pagination"></div>
-            <div className="swiper-button-prev"></div>
-            <div className="swiper-button-next"></div>
+          </div> */}
+          <div className="MV">
+            <div className="small-swiper">
+              <div class="small-swiper-container">
+                <div class="swiper-wrapper">
+                  {
+                    this.state.mvList.map((item,index) => {
+                      return (
+                        <div class="swiper-slide" key={index}>
+                          <img src={item.picUrl} alt=""/>
+                        </div>
+                      )
+                    })
+                  }
+                    
+                </div>
+                
+                <div class="swiper-pagination"></div>
+              </div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+              
+              </div>
             <div className="download">
               <a href=""></a>
               <p>PC 安卓 iPhone WP iPad Mac 六大客户端</p>
             </div>
+
+
           </div>
-
-
-
+          
 
         </div>
         <div className="contentWrapper clearfix">
@@ -190,7 +211,7 @@ export default class Recommend extends Component {
             <div className="left">
               <div className="hot">
                 <div className="hotNav">
-                    <div className='hotTitle'>
+                    <div className='hotTitle' onClick={this.toSongList}>
                       <div className='titleIcon'></div>
                       <h3>热门推荐</h3>
                     </div>
@@ -198,7 +219,7 @@ export default class Recommend extends Component {
                       {
                         this.state.hotCategory.map((item,index) => {
                           return (
-                            <a key={index}>
+                            <a key={index} onClick={() => {this.toSongList(item.category)}}>
                               {item.name}
                               <span>|</span>
                             </a>
@@ -240,11 +261,11 @@ export default class Recommend extends Component {
               </div>
               <div className="new">
                 <div className="nav">
-                      <div className='title'>
+                      <div className='title' onClick={this.toDisc}>
                         <div className='titleIcon'></div>
                         <h3>新碟上架</h3>
                       </div>
-                      <div className="more">
+                      <div className="more" onClick={this.toDisc}>
                           <span >更多</span>
                           <span > > </span>
                       </div>
@@ -288,11 +309,11 @@ export default class Recommend extends Component {
               </div>
               <div className="topList">
                 <div className="nav">
-                    <div className='title'>
+                    <div className='title' onClick={this.toTopList}>
                       <div className='titleIcon'></div>
                       <h3>榜单</h3>
                     </div>
-                    <div className="more">
+                    <div className="more" onClick={this.toTopList}>
                         <span >更多</span>
                         <span > > </span>
                     </div>
@@ -301,7 +322,7 @@ export default class Recommend extends Component {
                 <div className="topListContent">
 
                   <div className="riseList">
-                    <div className='playListTitle'>
+                    <div className='playListTitle' onClick={() => {this.toTopList('3')}}>
                       <div className='imgBlock'>
                         <img src={this.state.rise.coverImgUrl} alt=""/>
                       </div>
@@ -342,7 +363,7 @@ export default class Recommend extends Component {
                   </div>
                   
                   <div className="newSongs">
-                    <div className='playListTitle'>
+                    <div className='playListTitle' onClick={() => {this.toTopList('0')}}>
                       <div className='imgBlock'>
                         <img src={this.state.new.coverImgUrl} alt=""/>
                       </div>
@@ -381,7 +402,7 @@ export default class Recommend extends Component {
                     </div>
                   
                   <div className="originalList">
-                    <div className='playListTitle'>
+                    <div className='playListTitle' onClick={() => {this.toTopList('2')}}>
                       <div className='imgBlock'>
                         <img src={this.state.original.coverImgUrl} alt=""/>
                       </div>
@@ -431,7 +452,7 @@ export default class Recommend extends Component {
             <div className="singer">
               <div className="rightTitle">
                 <h3>入驻歌手</h3>
-                <a href="">查看全部></a>
+                <a href="" onClick={this.toSinger}>查看全部></a>
               </div>
               <ul className="singerList">
                 {
