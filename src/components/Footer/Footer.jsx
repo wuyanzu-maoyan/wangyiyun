@@ -2,7 +2,18 @@ import React,{Component} from 'react';
 import './css/footer.less'
 
 export default class Footer extends Component{
+    state={
+        isShow:false
+    }
+    show=(type)=>{
+       if(type){
+           this.setState({isShow:false})
+       }else{
+        this.setState({isShow:true})
+       }
+    }
   render(){
+      let {isShow} = this.state
     return (
     <div className="footer">
       <div className="footer-wrap w1 clearfix">
@@ -29,6 +40,47 @@ export default class Footer extends Component{
           </ul>
 
       </div>
+        <div  className={`kjcPlaye ${isShow?'':"hidden"}`} onMouseEnter={()=>{this.show(false)}} onMouseLeave={()=>{this.show(true)}}>
+            <div className="w">
+                <div className="kjcFooterBtns">
+                    <span className="kjcPreSong"></span>
+                    <span className="kjcPlay"></span>
+                    <span className="kjcNextSong"></span>
+                </div>
+                <div className="kjcMusicImg">
+                    <span></span>
+                    <img src="http://s4.music.126.net/style/web2/img/default/default_album.jpg" alt=""/>
+                </div>
+                <div className="kjcPlayLine">
+                    <div className="kjcPlayTemp"></div>
+                    
+                    <span className="kjcLine">
+                        
+                    </span>
+                    <span className="kjcPoint"></span>
+                    <span className="kjcPlayTime">
+                        <span>00:00</span> / 00:00
+                    </span>
+                </div>
+                <div className="kjcOper">
+                    <span className="kjcOper1"></span>
+                    <span className="kjcOper2"></span>
+                </div>
+                <div className="kjcPlayControl">
+                    <div className="kjcVoice"></div>
+                    <div className="kjcLoop"></div>
+                    <div className="kjcList">
+                        <span>0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div className={`kjcLeftIcon ${isShow?'':"hidden"}`}>
+                <span  className={`kjcPlayIcon ${isShow?'':"hidden"}`}></span>
+            </div>
+        </div>
+           
+        
   </div>
     )
   }

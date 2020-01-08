@@ -52,8 +52,8 @@ class RightContent extends Component{
     return originalElement;
   }
 
-  openMusic = async(id=1412242872)=>{
-   
+  openMusic = async(id)=>{
+  console.log(id)
     let result = await reqSongUrl(id)
     const {code,data} = result;
     console.log(data[0].url)
@@ -81,7 +81,7 @@ class RightContent extends Component{
   } 
 
   render(){
-    let {currentIndex,musicUrl} = this.state;
+    let {currentIndex,musicUrl,id} = this.state;
     let {topItem,topList,playList,total,commentList,comments} = this.props;
     return(
       <div className="kjcRightContent">
@@ -101,7 +101,7 @@ class RightContent extends Component{
           </div>
           <div className="kjcBtns">
             <div className="kjcPlay">
-              <span onClick={()=>{this.openMusic()}}>
+              <span onClick={()=>{this.openMusic(id)}}>
                 <em className="ply"></em>
                 播放
               </span>
