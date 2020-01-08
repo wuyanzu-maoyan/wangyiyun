@@ -60,9 +60,9 @@ export default class SongList extends Component{
                         <dd>
                       {this.state.classItem.map((item,index)=>{
                         return(
-                          
-                            <a href="#">{item.name}</a>
-                            // <span>|</span>
+                            <a href="#">{item.name}
+                            <span>|</span>
+                            </a>
                           )
                       })
                     }
