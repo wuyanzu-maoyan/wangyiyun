@@ -40,7 +40,7 @@ export default class SongList extends Component{
           <div className="wjTitle">
             <h3>
               <span>全部</span>
-              <a href="javascript:;" onClick={this.show}>
+              <a href="#1" onClick={this.show}>
                 <i>选择分类</i>
               </a>
             </h3>
@@ -51,16 +51,16 @@ export default class SongList extends Component{
               <i></i>
             </div>
             <div className="wjBd">
-              <h3><a href="#">全部风格</a></h3>
+              <h3><a href="#1">全部风格</a></h3>
               {
-                arr.map((item,index) => {
+                arr.map((item,index)  => {
                   return(
-                    <dl>
+                    <dl key={index}>
                       <dt><i className="icon1">{item}</i></dt>
                         <dd>
-                      {this.state.classItem.map((item,index)=>{
+                      {this.state.classItem.map((i,x)=>{
                         return(
-                            <a href="#">{item.name}
+                            <a key={x} href="#1">{i.name}
                             <span>|</span>
                             </a>
                           )

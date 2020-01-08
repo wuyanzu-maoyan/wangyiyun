@@ -10,7 +10,7 @@
   font-size: 12px;
     .kjcPlaye{
       position: fixed;
-      bottom: 0px;
+      bottom: 1px;
       left: 0;
       width: calc(100% - 52px);
       height: 53px;
@@ -48,6 +48,10 @@
             background-repeat: no-repeat;
             margin-right: 8px;
             margin-top: 5px;
+            cursor: pointer;
+            &.active{
+              background-position: 0 -165px;
+            }
           }
           .kjcNextSong{
             width: 28px;
@@ -87,6 +91,35 @@
           .kjcPlayTemp{
             width: 100%;
             height: 26px;
+            line-height: 26px;
+            .kjcSingerName{
+              max-width: 300px;
+              color: #e8e8e8;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              &:hover{
+                text-decoration: underline;
+              }
+            }
+            .kjcSongName{
+              text-shadow: 0 1px 0 #171717;
+              margin-left: 15px;
+              color: #9b9b9b;
+              &:hover{
+                text-decoration: underline;
+              }
+            }
+          }
+          .kjcPL{
+            position: absolute;
+            background-image: url('../img/statbar.png');
+            background-repeat: no-repeat;
+            height: 9px;
+            width: 0px;
+            background-position: left -66px;
+            background-color: #C20C0C;
+            z-index: 20;
           }
           .kjcLine{
             position: absolute;
@@ -96,6 +129,9 @@
             background-image: url('../img/statbar.png');
             background-position: right 0;
             background-repeat: no-repeat;
+            &.active{
+              background-position: right -30px;
+            }
           }
           .kjcPoint{
             position: absolute;
@@ -106,6 +142,7 @@
             background-image: url('../img/iconall.png');
             background-position: 0 -250px;
             background-repeat: no-repeat;
+            z-index: 21;
             
           }
           .kjcPlayTime{
@@ -191,7 +228,7 @@
       }
       .kjcLeftIcon{
         position: fixed;
-        bottom: 0px;
+        bottom: 1px;
         right: 0;
         width: 52px;
         height: 67px;
