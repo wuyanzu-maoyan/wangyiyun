@@ -1,12 +1,15 @@
 import React,{Component} from 'react'
 import './css.less'
+import { Pagination } from 'antd';
 import { reqNewList1 } from "../../../api/index";
 class Quanbu extends Component{
+  
   state={
-    albumList:[]
+    albumList:[],
   }
   componentDidMount(){
     this.getAlbumList()
+    
   }
   getAlbumList = async()=>{
     let data = await reqNewList1()
@@ -15,10 +18,41 @@ class Quanbu extends Component{
   if (code===200) {
     this.setState({ albumList: albums })
   }
- 
+  const qetAlbumsData=(page=1,pageSize=35 ,albumList=[])=>{
+    const {length } = albumList
+    const albumsData ={
+      data:[],
+      page,
+      pageSize,
+      length
+    };
+    if (pageSize >= length) {
+      albumsData.data = albumList;
+      albumsData.page = 1;
+    }else{
+      const num = pageSize*(page-1)
+      if (num<length) {
+        const startIndex = num;
+        const endIndex = num + pageSize - 1;
+        albumsData.data = albumList.filter((_, index) => index >= startIndex && index <= endIndex);
+      }else{
+        const size = parseInt(length / pageSize); //取商
+        const rest = length % pageSize;
+        if (rest>0) {
+          albumsData.page = size + 1
+          albumsData.data = albumList.filter((_, index) => index >= (pageSize * size) && index <= length);
+        }else if (rest===0) {
+          albumsData.page = size
+          albumsData.data = albumList.filter((_, index) => index >= (pageSize * (size - 1)) && index <= length);
+
+        }
+      }
+    }
+    return albumsData
+  }
+
 
   }
- 
   render(){
     return (
       <div >
@@ -40,14 +74,7 @@ class Quanbu extends Component{
              })
            }
           </ul>
-          <div className="page">
-            <a className="zbtn znrv">上一页</a>
-            <a className="zpgi">1</a>
-            <a className="zpgi">2</a>
-            <a className="zpgi">3</a>
-            <a className="zpgi">4</a>
-            <a className="zbtn znxt">下一页</a>
-          </div>
+          <Pagination defaultCurrent={6} total={150} />
       </div>
     )
   }
