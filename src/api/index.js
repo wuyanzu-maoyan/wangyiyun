@@ -2,7 +2,12 @@
 import ajax from './myAxios'
 
 //获取歌手列表
-export const reqArtistList = (cat,initial) => ajax.get(`/artist/list?cat=${cat}&initial=${initial}`)
+export const reqArtistList = (cat,offset,limit,initial) => {
+  //console.log(cat,offset,limit,initial)
+  return ajax.get(`/artist/list?cat=${cat}&offset=${offset}&limit =${limit}&initial=${initial}`)
+}
+//获取热门歌手
+export const reqHotList = (offset,limit) => ajax.get(`/top/artists?offset=${offset}&limit=${limit}`)
 
 //获取主播电台
 export const reqRadioCategories = ()=> ajax.get('/dj/catelist') //请求电台分类
@@ -59,3 +64,5 @@ export const reqSingerList =() => ajax.get('/artist/list?cat=5001');
 //带分页的评论
 export const reqCommentPage = ({id,limit,offset})=>ajax.get(`/comment/playlist?id=${id}&limit=${limit}&offset=${offset}`)
 
+//获取歌曲url
+export const reqSongUrl = (id) => ajax.get(`/song/url?id=${id}`)
