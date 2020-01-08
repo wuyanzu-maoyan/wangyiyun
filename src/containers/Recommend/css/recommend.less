@@ -7,25 +7,17 @@ a{
   .MVWrapper{
     height: 285px;
     width: 100%;
-    
-    .swiper-container {
-      position: relative;
+    .MV{
       width: 982px;
-      height: 100%;
-      
-      .swiper-button-prev::after,.swiper-button-next::after{
-        font-size: 40px;
-        
-      }
-      img{ 
-        display: block;
-        height: 285px;
-      }
+      height: 285px;
+      margin: 0 auto;
+      position: relative;
+      box-sizing: content-box;
       .download{
         position: absolute;
         z-index: 9;
         top: 0;
-        right: 0;
+        right: 0px;
         width: 250px;
         height: 285px;
         background-image: url(../../../static/img/download.png);
@@ -55,7 +47,35 @@ a{
           font-size: 12px;
         }
       }
-  }  
+      .small-swiper{
+        .small-swiper-container{
+          width: 982px;
+          position: relative;
+          overflow: hidden;
+          height: 285px;
+          
+          .swiper-slide{
+            height: 285px;
+            width: 982px;
+            
+            img{
+              
+            }
+            
+          }
+        }
+        .swiper-button-prev{
+          position: absolute;
+          left: -50px;
+        }
+        .swiper-button-next{
+          position: absolute;
+          right: -50px;
+        }
+      }
+    }
+    
+    
     
     
   }
@@ -92,6 +112,7 @@ a{
             line-height: 35px;
             justify-content: space-between;
             border-bottom: 2px solid #C10D0C;
+            margin-top: 20px;
             .hotTitle{
               font-size: 20px;
               width: 115px;
@@ -268,11 +289,18 @@ a{
           justify-content: space-between;
           border-bottom: 2px solid #C10D0C;
           margin-bottom: 20px;
+          padding-bottom: 5px;
           .title{
             font-size: 20px;
             width: 115px;
             display: flex;
-            
+            border-bottom:none;
+            h3{
+              font-size: 20px;
+              vertical-align: middle;
+              height: 35px;
+              line-height: 35px;
+            }
             .titleIcon{
               width: 35px;
               background-image: url(../../../static/img/index.png);
