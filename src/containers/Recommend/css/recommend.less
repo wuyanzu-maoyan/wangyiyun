@@ -1,36 +1,560 @@
+a{
+  text-decoration: none;
+}
 .RecommendContainer{
-  position: relative;
-  .recommendMV{
-    opacity: .3;
-    width: 100vw;
+  width: 100%;
+  height: 100%;
+  .MVWrapper{
     height: 285px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    img{
-      width: 100%;
+    width: 100%;
+    .MV{
+      width: 982px;
       height: 285px;
+      margin: 0 auto;
+      position: relative;
+      box-sizing: content-box;
+      .download{
+        position: absolute;
+        z-index: 9;
+        top: 0;
+        right: 0px;
+        width: 250px;
+        height: 285px;
+        background-image: url(../../../static/img/download.png);
+        background-position:0 -25px;
+        a{
+          display: block;
+          width: 215px;
+          height: 56px;
+          position: absolute;
+          left: 19px;
+          bottom: 41px;
+          
+        }
+        a:hover{
+          background-image: url(../../../static/img/download.png);
+          background-repeat: no-repeat;
+          background-position: 0 -341px;
+        }
+        
+        p{
+          position: absolute;
+          width: 100%;
+          text-align: center;
+          color:rgb(141, 141, 141);
+          bottom:0;
+          left: 0;
+          font-size: 12px;
+        }
+      }
+      .small-swiper{
+        .small-swiper-container{
+          width: 982px;
+          position: relative;
+          overflow: hidden;
+          height: 285px;
+          
+          .swiper-slide{
+            height: 285px;
+            width: 982px;
+            
+            img{
+              
+            }
+            
+          }
+        }
+        .swiper-button-prev{
+          position: absolute;
+          left: -50px;
+        }
+        .swiper-button-next{
+          position: absolute;
+          right: -50px;
+        }
+      }
     }
+    
+    
+    
+    
   }
-  .wrapper{
-    position: absolute;
-    width: 982px;
+  .contentWrapper{
+    width: 980px;
+    height: 100%;
     margin: 0 auto;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 9;
-    img{
-      height: 285px;
+    border: 1px solid #eee;
+    .leftWrapper{
+      width: 100%;
+      margin-right: -250px;
+      float: left;
+      
+      .left::after{
+        content: '';
+        display: table;
+      }
+      .left{
+        border-right: 1px solid #eee;
+        padding: 0 20px;
+        box-sizing: content-box;
+        width: 689px;
+        a:hover{
+          text-decoration: underline;
+          cursor: pointer;
+        }
+        
+        .hot{
+          height: 523px;
+          .hotNav{
+            width: 689px;
+            height: 35px;
+            display: flex;
+            line-height: 35px;
+            justify-content: space-between;
+            border-bottom: 2px solid #C10D0C;
+            margin-top: 20px;
+            .hotTitle{
+              font-size: 20px;
+              width: 115px;
+              display: flex;
+              .titleIcon{
+                width: 35px;
+                background-image: url(../../../static/img/index.png);
+                background-position: -222px -153px;
+              }
+            }
+            .hotCategory{
+              text-align: left;
+              width: 70%;
+              span{
+                margin: 0 5px;
+                color: #666;
+                font-size: 12px;
+                
+              }
+              a{
+                color: #666;
+              }
+            }
+            .hotMore{
+              width: 10%;
+            }
+          }
+          .playListWrapper{
+            ul{
+              margin: 20px 0 20px -42px;
+              overflow: hidden;
+              li{
+                width: 182px;
+                height: 234px;
+                float: left;
+                padding-left: 42px;
+                
+                .imgBlock{
+                  position: relative;
+                  width: 140px;
+                  height: 140px;
+                  img{
+                    width: 140px;
+                    height: 140px;
+                    background-color: #bfa;
+                  }
+                  .bottom{
+                    position: absolute;
+                    color: #ccc;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 27px;
+                    background-position: 0 -537px;
+                    color: #ccc;
+                    background-color: rgba(0, 0, 0, .3);
+                    .earPhone{
+                      float: left;
+                      width: 14px;
+                      height: 11px;
+                      background-image: url(../../../static/img/iconall.png);
+                      background-position: 0 -24px;
+                      margin: 9px 5px 9px 10px;
+                    }
+                    .playCount{
+                      float: left;
+                      line-height: 27px;
+                      height: 27px;
+                      color: #ccc;
+                    }
+                    .play{
+                      float: right;
+                      margin-right: 10px;
+                      width: 16px;
+                      height: 17px;
+                      font-size: 17px;
+                      color: #ccc;
+                      &:hover{
+                        color: #fff;
+                        cursor: pointer;
+                      }
+                    }
+                  }
+                }
+                
+                &>a{
+                  display: block;
+                  width: 140px;
+                  height: 38px;
+                  margin: 8px 0 3px;
+                  font-size: 14px;
+                  color: #000000;
+                }
+                
+              }
+  
+            }
+          }
+        }
+        .new{
+          height: 241px;
+          .newContent{
+            width: 100%;
+            height: 186px;
+            margin: 20px 0 37px;
+            border: 1px solid #d3d3d3;
+            .inner{
+              width: 100%;
+              height: 184px;
+              background: #f5f5f5;
+              border: 1px solid #fff;
+              
+              .new-swiper-container{
+                width: 100%;
+                height: 100%;
+                position: relative;
+                overflow: hidden;
+                
+                
+                .swiper-button-prev::after,.swiper-button-next::after{
+                  font-size: 15px;
+                }
+                .swiper-button-prev{
+                  left:5px;
+                }
+                .swiper-button-next{
+                  right: 5px;
+                }
+                .swiper-slide{
+                  padding: 0 30px;
+                  margin-top: 28px;
+                  overflow: hidden;
+                  height: 150px;
+                  .slideItem{
+                    width: 118px;
+                    height: 150px;
+                    
+                    //background-color: #bfa;
+                    float: left;
+                    margin-left: 7px;
+                    .imgBlock{
+                      width: 118px;
+                      height: 100px;
+                      background-image: url(../../../static/img/coverall.png);
+                      background-position: 0 -570px;
+                      img{
+                        width: 100px;
+                        height: 100px;
+                      }
+                      
+                    }
+                    p{
+                      height: 18px;
+                      line-height: 18px;
+                      margin-bottom: 0;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                      white-space: nowrap;
+                      word-wrap: normal;
+                      width: 90%;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          
+        }
+        .nav{
+          width: 689px;
+          height: 35px;
+          display: flex;
+          line-height: 35px;
+          justify-content: space-between;
+          border-bottom: 2px solid #C10D0C;
+          margin-bottom: 20px;
+          padding-bottom: 5px;
+          .title{
+            font-size: 20px;
+            width: 115px;
+            display: flex;
+            border-bottom:none;
+            h3{
+              font-size: 20px;
+              vertical-align: middle;
+              height: 35px;
+              line-height: 35px;
+            }
+            .titleIcon{
+              width: 35px;
+              background-image: url(../../../static/img/index.png);
+              background-position: -222px -153px;
+            }
+          }
+          .more{
+            color: #666;
+            font-size: 12px;
+          }
+        }
+        .topList{
+          height: 543px;
+          .play:hover{
+            color: #666;
+          }
+          .collect:hover{
+            color: #666;
+          }
+          .topListContent{
+            display: flex;
+            border: 1px solid #eee;
+            border-right: none;
+            &>div{
+              width: 230px;
+              border-right: 1px solid #eee;
+            }
+            ul{
+              width: 100%;
+              
+              li:nth-child(2n){
+                background-color:rgb(245, 244, 244) ;
+              }
+              li:nth-child(2n+1){
+                background-color: rgb(221, 223, 220);
+              }
+              li:nth-child(1) .order,li:nth-child(2) .order,li:nth-child(3) .order{
+                color: #c10d0c;
+              }
+              li{
+                height: 32px;
+                display: flex;
+                padding: 0 10px;
+                line-height: 32px;
+                color: #000000;
+                font-size: 12px;
+                position: relative;
+                .iconList{
+                  position: absolute;
+                  right: 0px;
+                  top: 0;
+                  z-index: 9;
+                  display: none;
+                  
+                  width: 82px;
+                  .iconItem{
+                    font-size: 16px;
+                    margin: 5px;
+                    color: #666;
+                    
+                  }
+                }
+                .order{
+                  display: block;
+                  width: 35px;
+                  height: 100%;
+                  text-align: center; 
+                  font-weight: bold;
+                }
+                
+                
+                a{
+                  color: #000000;
+                  font-size: 12px;
+                  display: block;
+                  width: 96px;
+                }
+                &:hover{
+                  a{
+                    width: 96px;
+                    white-space: nowrap; 
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                  }
+                  .iconList{
+                    display: flex;
+                  }
+                }
+                &.searchBoth{
+                  padding-left: 150px;
+                }
+              }
+
+            }
+
+
+
+
+            .playListTitle{
+              padding: 20px 0 0 19px;
+              background-color: rgb(245, 244, 244);
+              width: 100%;
+              display: flex;
+              color: rgb(180, 179, 179);
+              font-size: 14px;
+              font-weight: bold;
+              .imgBlock{
+                width: 80px;
+                height: 80px;
+                //background-color: #000;
+                margin-right: 10px;
+                margin-bottom: 20px;
+                img{
+                  width: 100%;
+                  height: 100%;
+                }
+              }
+              .titleIcons{
+                a{
+                  display: block;
+                  float: left;
+                  width: 22px;
+                  height: 22px;
+                  margin-right: 10px;
+                  font-size: 22px;
+                }
+              }
+              
+              a{
+                color: rgb(51, 51, 51);
+                font-size: 14px;
+                font-weight: bold;
+              }
+            }
+          }
+
+          
+        }
+      }
+      
     }
-    .download{
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 254px;
+    
+    .rightWrapper{
+      width: 250px;
       height: 100%;
-      background-color: red;
-      z-index: 9;
+      float: right;
+      .login{
+        width: 100%;
+        height: 126px;
+        background-image: url(../../../static/img/index.png);
+        background-position: 0 0;
+        p{
+          width: 205px;
+          margin: 0 auto;
+          padding: 16px 0;
+          line-height: 22px;
+          font-size: 12px;
+          color: #666;
+        }
+        .btn{
+          width: 100px;
+          height: 31px;
+          line-height: 31px;
+          text-align: center;
+          color: #fff;
+          text-shadow: 0 1px 0 #8a060b;
+          background-image: url(../../../static/img/index.png);
+          background-position: 0 -195px;
+          margin: 0 auto;
+          &:hover{
+            cursor: pointer;
+            background-position: -110px -195px;
+            color: #fff;
+          }
+        }
+      }
+      .rightTitle{
+        display: flex;
+        border-bottom: 1px solid #eee;
+        width: 100%;
+        justify-content: space-between;
+        h3{
+          color: rgba(0, 0, 0, 0.85);
+          font-weight: 500;
+          color: #333;
+          font-weight: bold;
+        }
+        a{
+          color: #666;
+
+          &:hover{
+            text-decoration: underline;
+            cursor: pointer;
+          }
+        }
+      }
+      .singer,.anchor{
+        width: 100%;
+        margin-top: 15px;
+        padding: 0 15px;
+        
+        .singerList{
+          margin: 6px 0 14px 0;
+          overflow: hidden;
+          .singerItem{
+            margin-top: 14px;
+            float: left;
+            width: 210px;
+            height: 62px;
+            background: #fafafa;
+            display: flex;
+            .avator{
+              width: 62px;
+              height: 62px;
+              margin-right: 10px;
+              img {
+               
+              }
+            }
+            .info{
+              width: 210px;
+              height: 62px;
+              &:hover{
+                background: #f4f4f4;
+              }
+            }
+          }
+        }
+        .apply{
+          height: 31px;
+          line-height: 31px;
+          
+          width: 210px;
+          border:1px solid #eee;
+          border-radius: 4px;
+          color: #333;
+          background-image: url(../../../static/img/button2.png);
+          background-position: right -141px;
+          font-size: 12px;
+          text-align: center;
+          
+        }
+      }
+      .singer{
+        height: 460px;
+      }
+      .anchor{
+        height: 451px;
+        width: 100%;
+        margin-top: 25px;
+        padding: 0 15px;
+        
+      }
     }
   }
+  
 }
