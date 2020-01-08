@@ -47,12 +47,11 @@ import { reqNewList } from "../../api/index";
                 <a href="#" className="icon-play f-alpha f-fr" title="播放" data-res-type="19" data-res-id="84698311" data-res-action="play"></a>
                 </div>
                 <p className="dec"><a>{item.name}</a></p>
-              <p className="thide"><span><a>{item.artist.name}</a></span></p>
+                <p className="thide"><span><a>{item.artist.name}</a></span></p>
               </li>
                )
-                
-                })
-              }
+            })
+          }
           
           </ul>
           <div className="title1">
