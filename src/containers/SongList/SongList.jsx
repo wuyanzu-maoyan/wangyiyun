@@ -2,20 +2,29 @@ import React,{Component} from "react"
 import './SongList.less'
 
 export default class SongList extends Component{
+  state={
+    isShow:false
+  }
+  show=()=>{
+    let isShow=!this.state.isShow
+    this.setState({isShow})
+
+  }
   render(){
+    let {isShow}=this.state
     return(
       <div id="wjContainer">
         <div className="wjBody">
           <div className="wjTitle">
             <h3>
               <span>全部</span>
-              <a href="">
+              <a href="javascript:;" onClick={this.show}>
                 <i>选择分类</i>
               </a>
             </h3>
             <div className="wjBtn"><a href="#">热门</a></div>
           </div>
-          <div className="wjBox">
+          <div className="wjBox" style={{display:isShow?'block':'none'}}>
             <div className="wjHd">
               <i></i>
             </div>
