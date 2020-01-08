@@ -1,44 +1,38 @@
 import React,{Component} from 'react'
 import './css.less'
-import { Pagination } from 'antd';
-import { reqNewList1 } from "../../../api/index";
+import { reqSongList } from "../../../api/index";
+
+
 class Quanbu extends Component{
-  
   state={
     albumList:[],
+    index:0
   }
+  
   componentDidMount(){
-    this.getAlbumList()
+    console.log('----');
+    this.getSongList() 
+  }
+  
+  getSongList = async() => {
+    const result = await reqSongList(this.props.match.params.category,this.state.index++);
+    const {code,albums} = result;
+    if(code===200){
+      console.log(albums);
+      this.setState({albumList:albums});
+    }
     
   }
-   itemRender=(current, type, originalElement)=>{
-    if (type === 'prev') {
-      return <a>上一页</a>;
-    }
-    if (type === 'next') {
-      return <a>下一页</a>;
-    }
-    return originalElement;
-  }
-  getAlbumList = async()=>{
-    let data = await reqNewList1()
-    console.log(data)
-    const { code, albums } = data
-    if (code===200) {
-      this.setState({ albumList: albums })
-    }
   
-  
-
-  }
+ 
   render(){
     return (
       <div >
           <ul className="cvrlst">
-        {
+          {
          
-              this.state.albumList.map((item,index) => {
-                return(
+            this.state.albumList.map((item,index) => {
+              return(
                 <li key={item.id}>
                   <div className="cover"><img src={item.picUrl}></img>
                   <a href="/album?id=84698311" className="msk" title="Yummy"></a>
@@ -47,12 +41,19 @@ class Quanbu extends Component{
                   <p className="dec"><a>{item.name}</a></p>
                 <p className="thide"><span><a>{item.artist.name}</a></span></p>
                 </li>
-            )
+              )
              
-             })
-           }
+            })
+          }
           </ul>
-          <Pagination total={150} itemRender={this.itemRender} />
+          <div className="page">
+            <a className="zbtn znrv">上一页</a>
+            <a className="zpgi">1</a>
+            <a className="zpgi">2</a>
+            <a className="zpgi">3</a>
+            <a className="zpgi">4</a>
+            <a className="zbtn znxt">下一页</a>
+          </div>
       </div>
     )
   }

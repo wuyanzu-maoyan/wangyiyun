@@ -1,11 +1,8 @@
 import React,{Component} from 'react'
 import './Disc-DVD.less'
-import { Route ,NavLink,Redirect} from "react-router-dom";
-import Quanbu from './Disc-DVD.1/quanbu.jsx'
-import Hanguo from './Disc-DVD.1/hanguo'
-import Huayu from './Disc-DVD.1/huayu'
-import Riben from './Disc-DVD.1/riben'
-import Oumei from './Disc-DVD.1/oumei'
+import { Route ,NavLink,Redirect,Switch} from "react-router-dom";
+import SongList from './Disc-DVD.1/SongList.jsx'
+
 // import { reqAlbumList } from "../../api/index";
 import { reqNewList } from "../../api/index";
  class DiscDVD extends Component{
@@ -60,23 +57,21 @@ import { reqNewList } from "../../api/index";
             </h3>
           
             <div className="areaList">
-              <NavLink to='/disc/quanbu'>全部</NavLink>
+              <NavLink to='/disc/songlist/ALL'>全部</NavLink>
               <span>|</span>
-              <NavLink to='/disc/huayu'>华语</NavLink> 
+              <NavLink to='/disc/songlist/ZH'>华语</NavLink> 
               <span>|</span>
-              <NavLink to='/disc/oumei'>欧美</NavLink>
+              <NavLink to='/disc/songlist/EA'>欧美</NavLink>
               <span>|</span>
-              <NavLink to='/disc/hanguo'>韩国</NavLink>
+              <NavLink to='/disc/songlist/KR'>韩国</NavLink>
               <span>|</span>
-              <NavLink to='/disc/riben'>日本</NavLink>
+              <NavLink to='/disc/songlist/JP'>日本</NavLink>
             </div>
           </div>
-          <Redirect to='/disc/quanbu'></Redirect>
-          <Route path='/disc/quanbu' component={Quanbu}></Route>
-          <Route path='/disc/oumei' component={Oumei}></Route>
-          <Route path='/disc/huayu' component={Huayu}></Route>
-          <Route path='/disc/riben' component={Riben}></Route>
-          <Route path='/disc/hanguo' component={Hanguo}></Route>
+          <Switch>
+            <Route path='/disc/songlist/:category' component={SongList}></Route>
+            <Redirect to='/disc/songlist/ALL'></Redirect>
+          </Switch>
         </div>
        
       </div>

@@ -153,35 +153,29 @@ export default class Recommend extends Component {
   toDisc = () => {
     this.props.history.push('/disc')
   }
-  toTopList = () => {
-    this.props.history.push('/toplist')
+  toTopList = (name) => {
+    console.log(name);
+    this.props.history.push('/toplist/rc/'+name);
   }
   toSinger = (event) => {
     event.preventDefault();
     this.props.history.push('/singer');
+
   }
   render() {
     return (
       <div className='RecommendContainer'>
 
         <div className='MVWrapper'>
-          {/* <div className="bigSwiper">
-            <div class="big-swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">Slide 1</div>
-                    <div class="swiper-slide">Slide 2</div>
-                    <div class="swiper-slide">Slide 3</div>
-                </div>
-            </div>
-          </div> */}
+          
           <div className="MV">
             <div className="small-swiper">
-              <div class="small-swiper-container">
-                <div class="swiper-wrapper">
+              <div className="small-swiper-container">
+                <div className="swiper-wrapper">
                   {
                     this.state.mvList.map((item,index) => {
                       return (
-                        <div class="swiper-slide" key={index}>
+                        <div className="swiper-slide" key={index}>
                           <img src={item.picUrl} alt=""/>
                         </div>
                       )
@@ -190,10 +184,10 @@ export default class Recommend extends Component {
                     
                 </div>
                 
-                <div class="swiper-pagination"></div>
+                <div className="swiper-pagination"></div>
               </div>
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-button-next"></div>
+              <div className="swiper-button-prev"></div>
+              <div className="swiper-button-next"></div>
               
               </div>
             <div className="download">
@@ -322,7 +316,7 @@ export default class Recommend extends Component {
                 <div className="topListContent">
 
                   <div className="riseList">
-                    <div className='playListTitle' onClick={() => {this.toTopList('3')}}>
+                    <div className='playListTitle' onClick={() => {this.toTopList(this.state.rise.name)}}>
                       <div className='imgBlock'>
                         <img src={this.state.rise.coverImgUrl} alt=""/>
                       </div>
@@ -363,7 +357,7 @@ export default class Recommend extends Component {
                   </div>
                   
                   <div className="newSongs">
-                    <div className='playListTitle' onClick={() => {this.toTopList('0')}}>
+                    <div className='playListTitle' onClick={() => {this.toTopList(this.state.new.name)}}>
                       <div className='imgBlock'>
                         <img src={this.state.new.coverImgUrl} alt=""/>
                       </div>
@@ -402,7 +396,7 @@ export default class Recommend extends Component {
                     </div>
                   
                   <div className="originalList">
-                    <div className='playListTitle' onClick={() => {this.toTopList('2')}}>
+                    <div className='playListTitle' onClick={() => {this.toTopList(this.state.original.name)}}>
                       <div className='imgBlock'>
                         <img src={this.state.original.coverImgUrl} alt=""/>
                       </div>
