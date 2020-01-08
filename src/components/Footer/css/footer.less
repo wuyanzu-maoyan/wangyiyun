@@ -87,6 +87,25 @@
           .kjcPlayTemp{
             width: 100%;
             height: 26px;
+            line-height: 26px;
+            .kjcSingerName{
+              max-width: 300px;
+              color: #e8e8e8;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              &:hover{
+                text-decoration: underline;
+              }
+            }
+            .kjcSongName{
+              text-shadow: 0 1px 0 #171717;
+              margin-left: 15px;
+              color: #9b9b9b;
+              &:hover{
+                text-decoration: underline;
+              }
+            }
           }
           .kjcLine{
             position: absolute;

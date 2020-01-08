@@ -26,6 +26,7 @@ class RightContent extends Component{
     musicUrl:'',
     isPlay:false,//是否播放
     id:0, //歌曲的id
+    cuIndex:0, //正在播放歌曲的下标
   }
   componentWillUnmount(){
     PubSub.unsubscribe('getIndex')
@@ -52,18 +53,20 @@ class RightContent extends Component{
     return originalElement;
   }
 
-  openMusic = async(id)=>{
-  console.log(id)
+  openMusic = async(id,index)=>{
+  
     let result = await reqSongUrl(id)
     const {code,data} = result;
     console.log(data[0].url)
     if(code === 200){
-      this.setState({musicUrl:data[0].url},()=>{
+      this.setState({musicUrl:data[0].url,cuIndex:index},()=>{
         this.refs.audio.src = this.state.musicUrl
         this.setState({id})
        if(id === this.state.id){
+        
         this.refs.audio.pause()
        }else {
+        
         this.refs.audio.play()
        }       
       })
@@ -81,7 +84,7 @@ class RightContent extends Component{
   } 
 
   render(){
-    let {currentIndex,musicUrl,id} = this.state;
+    let {currentIndex,musicUrl,id,cuIndex} = this.state;
     let {topItem,topList,playList,total,commentList,comments} = this.props;
     return(
       <div className="kjcRightContent">
@@ -143,7 +146,7 @@ class RightContent extends Component{
                     </div>
                     <div className="kjcSongContent">
                       <img src={item.al.picUrl} alt=""/>
-                      <span className="kjcOpen" onClick={()=>{this.openMusic(item.id,index)}}>&nbsp;&nbsp;</span>
+                      <span className={`kjcOpen ${cuIndex == index?'active':''}`}  onClick={()=>{this.openMusic(item.id,index)}}>&nbsp;&nbsp;</span>
                       <div className="kjcSingerContent">
                           {item.name}&nbsp;
                       </div>
@@ -174,7 +177,7 @@ class RightContent extends Component{
                     <div className="kjcSongRank new"></div>
                   </div>
                   <div className="kjcSongContent">
-                    <span className="kjcOpen" onClick={()=>{this.openMusic(item.id,index)}}>&nbsp;</span>
+                    <span className={`kjcOpen ${cuIndex == index?'active':''}`} onClick={()=>{this.openMusic(item.id,index)}}>&nbsp;</span>
                     <div className="kjcSingerContent">
                     {item.name}&nbsp;
                     </div>

@@ -52,7 +52,10 @@ export default class Footer extends Component{
                     <img src="http://s4.music.126.net/style/web2/img/default/default_album.jpg" alt=""/>
                 </div>
                 <div className="kjcPlayLine">
-                    <div className="kjcPlayTemp"></div>
+                    <div className="kjcPlayTemp">
+                        <span className="kjcSingerName">飞</span>
+                        <span className="kjcSongName">王恩信Est</span>
+                    </div>
                     
                     <span className="kjcLine">
                         
