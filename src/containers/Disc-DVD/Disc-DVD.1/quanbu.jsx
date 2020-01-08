@@ -11,46 +11,24 @@ class Quanbu extends Component{
     this.getAlbumList()
     
   }
+   itemRender=(current, type, originalElement)=>{
+    if (type === 'prev') {
+      return <a></a>;
+    }
+    if (type === 'next') {
+      return <a>Next</a>;
+    }
+    return originalElement;
+  }
   getAlbumList = async()=>{
     let data = await reqNewList1()
     console.log(data)
     const { code, albums } = data
-  if (code===200) {
-    this.setState({ albumList: albums })
-  }
-  const qetAlbumsData=(page=1,pageSize=35 ,albumList=[])=>{
-    const {length } = albumList
-    const albumsData ={
-      data:[],
-      page,
-      pageSize,
-      length
-    };
-    if (pageSize >= length) {
-      albumsData.data = albumList;
-      albumsData.page = 1;
-    }else{
-      const num = pageSize*(page-1)
-      if (num<length) {
-        const startIndex = num;
-        const endIndex = num + pageSize - 1;
-        albumsData.data = albumList.filter((_, index) => index >= startIndex && index <= endIndex);
-      }else{
-        const size = parseInt(length / pageSize); //取商
-        const rest = length % pageSize;
-        if (rest>0) {
-          albumsData.page = size + 1
-          albumsData.data = albumList.filter((_, index) => index >= (pageSize * size) && index <= length);
-        }else if (rest===0) {
-          albumsData.page = size
-          albumsData.data = albumList.filter((_, index) => index >= (pageSize * (size - 1)) && index <= length);
-
-        }
-      }
+    if (code===200) {
+      this.setState({ albumList: albums })
     }
-    return albumsData
-  }
-
+  
+  
 
   }
   render(){
@@ -74,7 +52,7 @@ class Quanbu extends Component{
              })
            }
           </ul>
-          <Pagination defaultCurrent={6} total={150} />
+          <Pagination total={500} itemRender={this.itemRender} />
       </div>
     )
   }
