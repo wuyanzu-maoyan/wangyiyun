@@ -1,9 +1,15 @@
 import React,{Component} from 'react';
-import './css/footer.less'
+import './css/footer.less';
+import PubSub from 'pubsub-js'
 
 export default class Footer extends Component{
     state={
-        isShow:false
+        isShow:false,
+        songData:{},
+        songCount:0,
+        songUrl:'',
+        isPlay:false,
+        time:0
     }
     show=(type)=>{
        if(type){
@@ -12,8 +18,60 @@ export default class Footer extends Component{
         this.setState({isShow:true})
        }
     }
+    play=()=>{
+        let {isPlay,songData} = this.state
+        this.setState({isPlay:!isPlay},()=>{
+            PubSub.publish('playOrPause',!isPlay)
+        })
+        if(isPlay){
+            this.refs.playLine.style.width = '493px';
+            this.refs.playLine.style.transition = songData.dt/1000 + 's';
+            this.refs.point.style.left =  '486px'
+            this.refs.point.style.transition = songData.dt/1000 + 's';
+            this.timer = setInterval(()=>{
+                if(this.state.time >= songData.dt){
+                    clearInterval(this.timer)
+                }
+                this.setState({
+                    time:this.state.time+1000
+                })
+            },1000)
+            
+        }else{
+            this.refs.playLine.style.transition = '0s';
+            this.refs.playLine.style.width = '0px';
+            this.refs.point.style.transition = '0s';
+            this.refs.point.style.left = '-8px'
+            clearInterval(this.timer)
+        }
+       
+    }
+    componentDidMount(){
+        PubSub.subscribe('getSong',(name,{url,song})=>{
+            
+           
+            if(url !== this.state.songUrl){
+                this.setState({
+                    songCount:this.state.songCount+1
+                })
+            }
+            this.setState({
+                isShow:true,
+                songUrl:url,
+                songData:song,
+                isPlay:true
+            })
+            this.refs.playLine.style.width = '493px';
+            this.refs.playLine.style.transition = song.dt/1000 + 's';
+            this.refs.point.style.left = '486px'
+            this.refs.point.style.transition = song.dt/1000 + 's';
+           
+         
+           
+        })
+    }
   render(){
-      let {isShow} = this.state
+      let {isShow,songData,songCount,isPlay,time} = this.state
     return (
     <div className="footer">
       <div className="footer-wrap w1 clearfix">
@@ -44,25 +102,31 @@ export default class Footer extends Component{
             <div className="w">
                 <div className="kjcFooterBtns">
                     <span className="kjcPreSong"></span>
-                    <span className="kjcPlay"></span>
+                    <span  className={`kjcPlay ${isPlay?'active':''}`} onClick={this.play}></span>
                     <span className="kjcNextSong"></span>
                 </div>
                 <div className="kjcMusicImg">
                     <span></span>
-                    <img src="http://s4.music.126.net/style/web2/img/default/default_album.jpg" alt=""/>
+                    <img src={(songData.al && songData.al.picUrl) || 'http://s4.music.126.net/style/web2/img/default/default_album.jpg'} alt=""/>
                 </div>
                 <div className="kjcPlayLine">
                     <div className="kjcPlayTemp">
-                        <span className="kjcSingerName">飞</span>
-                        <span className="kjcSongName">王恩信Est</span>
+                 <span className="kjcSingerName">{songData.name}</span>
+                        {
+                            songData.ar && songData.ar.map((al,i)=>{
+                                return (
+                                <span key={i} className="kjcSongName">{al.name} </span>
+                                )
+                            })
+                        }
                     </div>
-                    
-                    <span className="kjcLine">
+                    <span className="kjcPL" ref='playLine'></span>
+                    <span className={`kjcLine ${isPlay?'active':''}`}>
                         
                     </span>
-                    <span className="kjcPoint"></span>
+                    <span className="kjcPoint" ref='point'></span>
                     <span className="kjcPlayTime">
-                        <span>00:00</span> / 00:00
+                        <span>{`0${parseInt(time/1000/60)}:${(time/1000/60+'').slice(2,4)}`}</span> / {`0${parseInt(songData.dt/1000/60)}:${(songData.dt/1000/60+'').slice(2,4)}`}
                     </span>
                 </div>
                 <div className="kjcOper">
@@ -73,7 +137,7 @@ export default class Footer extends Component{
                     <div className="kjcVoice"></div>
                     <div className="kjcLoop"></div>
                     <div className="kjcList">
-                        <span>0</span>
+                    <span>{songCount}</span>
                     </div>
                 </div>
             </div>

@@ -48,6 +48,10 @@
             background-repeat: no-repeat;
             margin-right: 8px;
             margin-top: 5px;
+            cursor: pointer;
+            &.active{
+              background-position: 0 -165px;
+            }
           }
           .kjcNextSong{
             width: 28px;
@@ -107,6 +111,16 @@
               }
             }
           }
+          .kjcPL{
+            position: absolute;
+            background-image: url('../img/statbar.png');
+            background-repeat: no-repeat;
+            height: 9px;
+            width: 0px;
+            background-position: left -66px;
+            background-color: #C20C0C;
+            z-index: 20;
+          }
           .kjcLine{
             position: absolute;
             display: block;
@@ -115,6 +129,9 @@
             background-image: url('../img/statbar.png');
             background-position: right 0;
             background-repeat: no-repeat;
+            &.active{
+              background-position: right -30px;
+            }
           }
           .kjcPoint{
             position: absolute;
@@ -125,6 +142,7 @@
             background-image: url('../img/iconall.png');
             background-position: 0 -250px;
             background-repeat: no-repeat;
+            z-index: 21;
             
           }
           .kjcPlayTime{

@@ -26,7 +26,7 @@ class RightContent extends Component{
     musicUrl:'',
     isPlay:false,//是否播放
     id:0, //歌曲的id
-    cuIndex:0, //正在播放歌曲的下标
+    cuIndex:'', //正在播放歌曲的下标
   }
   componentWillUnmount(){
     PubSub.unsubscribe('getIndex')
@@ -42,6 +42,13 @@ class RightContent extends Component{
         this.props.setComments({hotComments,comments,total})
       }
     })
+    PubSub.subscribe('playOrPause',(name,type)=>{
+          if(type){
+            this.refs.audio.play()
+          }else{
+            this.refs.audio.pause()
+          }
+    })
   }
   itemRender = (current, type, originalElement) => {
     if (type === 'prev') {
@@ -53,11 +60,11 @@ class RightContent extends Component{
     return originalElement;
   }
 
-  openMusic = async(id,index)=>{
+  openMusic = async(id,index,item)=>{
   
     let result = await reqSongUrl(id)
     const {code,data} = result;
-    console.log(data[0].url)
+    PubSub.publish('getSong',{url:data[0].url,song:item})
     if(code === 200){
       this.setState({musicUrl:data[0].url,cuIndex:index},()=>{
         this.refs.audio.src = this.state.musicUrl
@@ -74,7 +81,7 @@ class RightContent extends Component{
   }
 
   onChange = async(page,pageSize)=>{
-    console.log(page,pageSize)
+ 
     let {songListId} = this.state
     let result = await reqCommentPage({id:songListId,limit:pageSize,offset:((page-1)*pageSize)})
     const {code,hotComments,comments,total} = result;
@@ -146,7 +153,7 @@ class RightContent extends Component{
                     </div>
                     <div className="kjcSongContent">
                       <img src={item.al.picUrl} alt=""/>
-                      <span className={`kjcOpen ${cuIndex == index?'active':''}`}  onClick={()=>{this.openMusic(item.id,index)}}>&nbsp;&nbsp;</span>
+                      <span className={`kjcOpen ${cuIndex === index?'active':''}`}  onClick={()=>{this.openMusic(item.id,index,item)}}>&nbsp;&nbsp;</span>
                       <div className="kjcSingerContent">
                           {item.name}&nbsp;
                       </div>
@@ -177,7 +184,7 @@ class RightContent extends Component{
                     <div className="kjcSongRank new"></div>
                   </div>
                   <div className="kjcSongContent">
-                    <span className={`kjcOpen ${cuIndex == index?'active':''}`} onClick={()=>{this.openMusic(item.id,index)}}>&nbsp;</span>
+                    <span className={`kjcOpen ${cuIndex == index?'active':''}`} onClick={()=>{this.openMusic(item.id,index,item)}}>&nbsp;</span>
                     <div className="kjcSingerContent">
                     {item.name}&nbsp;
                     </div>
