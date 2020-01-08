@@ -4,15 +4,17 @@ import SingerHeader from '../../../components/singerHeader/singerHeader.jsx'
 import SingerItem from '../../../components/singerItem/singerItem.jsx'
 import SingerHotItem from '../../../components/singerHotItem/singerHotItem.jsx'
 import {reqArtistList} from '../../../api'
+import menu from '../LeftList/menu_config'
 import './Cat.less'
 export default class Cat extends Component{
   componentDidMount(){
-    PubSub.subscribe('getId',(msg,id)=>{
-      this.setState({
-        id 
-      })
-    })
-    this.getSingedList()
+    // this.saveId()
+    const id = this.props.match.params.key
+    this.getSingedList(id)
+    this.getTitle(id)
+  }
+  componentDidUpdate(){
+   // this.getSingedList()
   }
   state = {
     topList:[
@@ -46,10 +48,35 @@ export default class Cat extends Component{
       {name:'其他',key:''},
     ],
     singedList: [],
-    id:'',
     key:'',
-    moreSingedList:[]
+    moreSingedList:[],
+    title:''
   }
+
+  getTitle = (id)=>{
+   const titleArr = menu.find(item => item.children.find(i=> i.key === id))
+   const title = titleArr.children.find(i=> i.key === id).title
+   console.log(title)
+   this.setState({
+    title
+  })
+  }
+  // saveId = ()=>{
+  //   PubSub.subscribe('getId',(msg,obj)=>{
+  //     // this.setState({
+  //     //   id 
+  //     // })
+  //     const {singedList,moreSingedList} = obj
+  //     console.log(singedList,moreSingedList)
+  //     this.setState({
+  //       singedList,
+  //       moreSingedList 
+  //     })
+  //     // console.log(msg,id)
+  //   })
+    
+  // }
+  //A-Z列表
   getTopList = ()=>{
     const {topList} = this.state
     return topList.map(item =>{
@@ -60,15 +87,18 @@ export default class Cat extends Component{
       )
     })
   }
+  //保存点击的a...
   getKey = (key)=>{
     console.log(key)
     this.setState({
       key
     })
   }
-  getSingedList = async () =>{
-    const {id,key} = this.state
-    const result = await reqArtistList('1001','0','100')
+  //发送请求获取数据
+  getSingedList = async (id) =>{
+    
+    console.log(id)
+    const result = await reqArtistList(id,'0','100')
     console.log(result)
     if(result.code == 200){
       const moreSingedList = result.artists
@@ -83,11 +113,18 @@ export default class Cat extends Component{
     
   }
 
+  componentWillReceiveProps (nextProps) {
+    // console.log('componentWillReceiveProps', nextProps.match.params.key, this.props.match.params.key)
+    const id = nextProps.match.params.key
+    this.getSingedList(id)
+    this.getTitle(id)
+  }
+
   render(){
-    const {singedList,moreSingedList} = this.state
+    const {singedList,moreSingedList,title} = this.state
     return(
       <div className="zxCat">
-        <SingerHeader title="入驻歌手"></SingerHeader>
+        <SingerHeader title={title}></SingerHeader>
         <div className="zxTopList">
           <ul>
             {this.getTopList()}

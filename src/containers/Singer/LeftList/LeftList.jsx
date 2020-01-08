@@ -5,9 +5,9 @@ import menu from './menu_config'
 import './css/LeftList.less'
 export default class LeftList extends Component {
 
-  getCat = (id)=>{
-    PubSub.publish('getId',id)
-  }
+  // getCat = (id)=>{
+  //   PubSub.publish('getId',id)
+  // }
 
   // 用于创建菜单的函数
   createMenu = (target)=>{
@@ -31,7 +31,8 @@ export default class LeftList extends Component {
   createList = (item)=>{
     return item.map(i =>{
       return(
-        <li key={i.key} onClick={()=>{this.getCat(i.key)}}>
+        // <li key={i.key} onClick={()=>{this.getCat(i.key)}}>
+        <li key={i.key}>
           <NavLink to={`/singer/cat/${i.key}`}>{i.title}</NavLink>
         </li>
       )

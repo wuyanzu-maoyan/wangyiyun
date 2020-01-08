@@ -3,7 +3,7 @@ import ajax from './myAxios'
 
 //获取歌手列表
 export const reqArtistList = (cat,offset,limit,initial) => {
-  console.log(cat,offset,limit,initial)
+  //console.log(cat,offset,limit,initial)
   return ajax.get(`/artist/list?cat=${cat}&offset=${offset}&limit =${limit}&initial=${initial}`)
 }
 //获取热门歌手
