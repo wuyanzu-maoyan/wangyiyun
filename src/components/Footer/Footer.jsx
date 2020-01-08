@@ -126,7 +126,7 @@ export default class Footer extends Component{
                     </span>
                     <span className="kjcPoint" ref='point'></span>
                     <span className="kjcPlayTime">
-                        <span>{`0${parseInt(time/1000/60)}:${(time/1000/60+'').slice(2,4)}`}</span> / {`0${parseInt(songData.dt/1000/60)}:${(songData.dt/1000/60+'').slice(2,4)}`}
+                        <span>{`0${parseInt(time/1000/60)}:${(time/1000/60+'').slice(2,4)}` || '00:00'}</span> / {`0${parseInt(songData.dt/1000/60)}:${(songData.dt/1000/60+'').slice(2,4)}` || '00:00'}
                     </span>
                 </div>
                 <div className="kjcOper">
