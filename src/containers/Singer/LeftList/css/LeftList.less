@@ -9,10 +9,19 @@
   ul{
     li{
       margin-bottom: 2px;
+      display: flex;
       width: 160px;
       height: 29px;
       line-height: 29px;
       padding-left: 10px;
+      .zxSpot{
+        width: 4px;
+        height: 4px;
+        margin-left: 2px;
+        margin-right: 5px;
+        margin-top: 13px;
+        background-color: #b3b3b3;
+      }
       a{
         height: 29px;
         line-height: 29px;
@@ -25,17 +34,12 @@
     }
     .active{
       border: 1px solid #ddd;
+      .zxSpot{
+        background-color: #c20c0c;
+      }
       a{
         color: #c20c0c
       }
-    }
-    li::before{
-      content: "\02022";
-      margin-left: -2px;
-      margin-right: 8px;
-      color: #b3b3b3;
-      font-style: normal;
-      list-style-type: square;
     }
   }
   .line{

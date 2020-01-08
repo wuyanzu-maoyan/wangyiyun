@@ -14,18 +14,7 @@ export default class Singer extends Component{
         <div className="zxSinger clearfix">
           <div className="zxLeftNavContainer">
             <div className="zxLeftNav">
-              <div className="zxLeftNavList">
-                <p>推荐</p>
-                <ul>
-                  <li className="active">
-                    <NavLink to="/singer/artist" activeClassName="active">推荐歌手</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/singer/signed">入驻歌手</NavLink>
-                  </li>
-                </ul>
-                <p className="line"></p>
-              </div>
+              
               <LeftList></LeftList>
               
             </div> 

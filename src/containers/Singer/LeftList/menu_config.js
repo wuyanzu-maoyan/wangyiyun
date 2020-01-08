@@ -1,6 +1,20 @@
 //项目的菜单配置
 export default[
   {
+    title: '推荐',
+    key: '0',
+    children: [ // 子菜单列表
+      {
+        title: '推荐歌手',
+        key: '0001'
+      },
+      {
+        title: '入驻歌手',
+        key: '0002'
+      }
+    ]
+  },
+  {
     title: '华语',
     key: '1',
     children: [ // 子菜单列表
