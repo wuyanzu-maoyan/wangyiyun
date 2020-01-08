@@ -1,12 +1,15 @@
 import React,{Component} from 'react'
 import './css.less'
+import { Pagination } from 'antd';
 import { reqNewList1 } from "../../../api/index";
 class Quanbu extends Component{
+  
   state={
     albumList:[]
   }
   componentDidMount(){
     this.getAlbumList()
+    
   }
   getAlbumList = async()=>{
     let data = await reqNewList1()
@@ -18,7 +21,6 @@ class Quanbu extends Component{
  
 
   }
- 
   render(){
     return (
       <div >
@@ -40,14 +42,7 @@ class Quanbu extends Component{
              })
            }
           </ul>
-          <div className="page">
-            <a className="zbtn znrv">上一页</a>
-            <a className="zpgi">1</a>
-            <a className="zpgi">2</a>
-            <a className="zpgi">3</a>
-            <a className="zpgi">4</a>
-            <a className="zbtn znxt">下一页</a>
-          </div>
+          <Pagination defaultCurrent={6} total={150} />
       </div>
     )
   }
