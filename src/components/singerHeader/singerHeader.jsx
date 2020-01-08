@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom'
 import './css/singerHeader.less'
 export default class SingerHeader extends Component{
   componentDidMount(){
-    console.log(this.props)
+    // console.log(this.props)
   }
   render(){
     const {title,isMore} = this.props

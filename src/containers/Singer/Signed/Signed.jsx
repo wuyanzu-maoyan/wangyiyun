@@ -13,10 +13,10 @@ export default class Singed extends Component{
   }
   getSingedList = async () =>{
     const result = await reqArtistList('5001','0','100')
-    console.log(result)
+    // console.log(result)
     if(result.code == 200){
       const singedList = result.artists
-      console.log(singedList)
+      // console.log(singedList)
       this.setState({
         singedList
       })

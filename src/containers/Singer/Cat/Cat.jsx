@@ -56,7 +56,7 @@ export default class Cat extends Component{
   getTitle = (id)=>{
    const titleArr = menu.find(item => item.children.find(i=> i.key === id))
    const title = titleArr.children.find(i=> i.key === id).title
-   console.log(title)
+  //  console.log(title)
    this.setState({
     title
   })
@@ -97,13 +97,13 @@ export default class Cat extends Component{
   //发送请求获取数据
   getSingedList = async (id) =>{
     
-    console.log(id)
+    // console.log(id)
     const result = await reqArtistList(id,'0','100')
-    console.log(result)
+    // console.log(result)
     if(result.code == 200){
       const moreSingedList = result.artists
       const singedList = result.artists.slice(0,10)
-      console.log(singedList)
+      // console.log(singedList)
       this.setState({
         singedList,
         moreSingedList 
