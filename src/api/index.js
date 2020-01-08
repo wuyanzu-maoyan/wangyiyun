@@ -51,3 +51,5 @@ export const reqSingerList =() => ajax.get('/artist/list?cat=5001');
 //带分页的评论
 export const reqCommentPage = ({id,limit,offset})=>ajax.get(`/comment/playlist?id=${id}&limit=${limit}&offset=${offset}`)
 
+//获取歌曲url
+export const reqSongUrl = (id) => ajax.get(`/song/url?id=${id}`)
