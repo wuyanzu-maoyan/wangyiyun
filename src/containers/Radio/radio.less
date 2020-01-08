@@ -162,7 +162,7 @@
       .recommend{
         // float: left;
         li{
-          img{
+          .img{
             margin-left: 20px;
           }
           .middle{
@@ -279,13 +279,35 @@
             }
             &:hover{
               background: #eee;
+              .img{
+                i{
+                  display: block;
+                }
+              }
             }
             
-            img{
+            .img{
+              position: relative;
               float: left;
               width: 40px;
               height: 40px;
               cursor: pointer;
+              img{
+                width: 100%;
+              }
+              i{
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%);
+                display: inline-block;
+                width: 18px;
+                height: 18px;
+                border-radius: 50%;
+                background-image: url('./images/icon.png');
+                background-position: -45px -635px;
+                display: none;
+              }
             }
             .middle{
               float: left;

@@ -54,7 +54,7 @@ export default class Radio extends Component{
   //获取 节目排行榜
   getRadioPlayList = async()=>{
     let result = await reqRadioPlayList(10)
-    console.log(result);
+    // console.log(result);
     if(result.code === 200){
       const playList = result.toplist
       this.setState({
@@ -75,7 +75,7 @@ export default class Radio extends Component{
     }
     //请求美文读物 电台
     let meiwenResult = await reqRadioHot(6,1) //请求回来6条数据
-    // console.log(meiwenResult);
+    console.log(meiwenResult);
     if(meiwenResult.code === 200){
       const meiwen = meiwenResult.djRadios.slice(0,4)
       this.setState({
@@ -155,6 +155,14 @@ export default class Radio extends Component{
     window.location.href=`https://music.163.com/#/discover/djradio/category?id=${id}`  //在当前窗口跳转
     // window.open('about:blank').location.href=`https://music.163.com/#/discover/djradio/category?id=${id}` //打开新窗口
   }
+  //跳转到节目详情
+  toProgram(id){
+    window.location.href=`https://music.163.com/#/program?id=${id}`
+  }
+  //跳转到音乐故事详情
+  toDjRadio(id){
+    window.location.href=`https://music.163.com/#/djradio?id=${id}`
+  }
   
   render(){
     let {categories1,categories2,recommends,playList,music,meiwen,tuokouxiu,qinggan,chuangzuo,renwen} = this.state
@@ -221,8 +229,11 @@ export default class Radio extends Component{
                 <ul className="list">
                   {
                     recommends.map((recommend,index)=>{
-                      return <li key={index}>
-                        <img src={recommend.picUrl} alt=""/>
+                      return <li key={index} onClick={()=>{this.toProgram(recommend.id)}}>
+                        <div className="img">
+                          <img src={recommend.picUrl} alt=""/>
+                          <i></i>
+                        </div>
                         <div className="middle">
                           <h3>{recommend.name}</h3>
                           <p>{recommend.rcmdtext}</p>
@@ -243,12 +254,15 @@ export default class Radio extends Component{
                   {
                     playList.map((play,index) =>{
                       if (play.rank<=3) {
-                        return <li key={index}>
+                        return <li key={index} onClick={()=>{this.toProgram(play.program.id)}}>
                           <div className="rank">
                             <p className="red">{++index}</p>
                             <span className="up">{10-index}</span>
                           </div>
-                          <img src={play.program.coverUrl} alt="图片"/>
+                          <div className="img">
+                            <img src={play.program.coverUrl} alt="图片"/>
+                            <i></i>
+                          </div>
                           <div className="middle">
                             <h3>{play.program.name}</h3>
                             <p>{play.program.radio.name}</p>
@@ -258,12 +272,15 @@ export default class Radio extends Component{
                           </div>
                         </li>
                       }else if(index===5 || index===7 || index===8) {
-                        return <li key={index}>
+                        return <li key={index} onClick={()=>{this.toProgram(play.program.id)}}>
                           <div className="rank">
                             <p className="gray">{++index}</p>
                             <span className="new"></span>
                           </div>
-                          <img src={play.program.coverUrl} alt="图片"/>
+                          <div className="img">
+                            <img src={play.program.coverUrl} alt="图片"/>
+                            <i></i>
+                          </div>
                           <div className="middle">
                             <h3>{play.program.name}</h3>
                             <p>{play.program.radio.name}</p>
@@ -272,13 +289,16 @@ export default class Radio extends Component{
                             <i style={{width: `${(play.score)/300000*100}%`}}></i>
                           </div>
                         </li>
-                      } else if(play.rank>3){
-                        return <li key={index}>
+                      } else{
+                        return <li key={index} onClick={()=>{this.toProgram(play.program.id)}}>
                           <div className="rank">
                             <p className="gray">{++index}</p>
                             <span className="flat">- 0</span>
                           </div>
-                          <img src={play.program.coverUrl} alt="图片"/>
+                          <div className="img">
+                            <img src={play.program.coverUrl} alt="图片"/>
+                            <i></i>
+                          </div>
                           <div className="middle">
                             <h3>{play.program.name}</h3>
                             <p>{play.program.radio.name}</p>
@@ -302,7 +322,7 @@ export default class Radio extends Component{
               <ul className="radioList musicList">
                 {
                   music.map((music,index)=>{
-                    return <li key={index}>
+                    return <li key={index} onClick={()=>{this.toDjRadio(music.id)}}>
                       <img src={music.picUrl} alt=""/>
                       <div className="radioInfo">
                         <h3>{music.name}</h3>
@@ -322,7 +342,7 @@ export default class Radio extends Component{
               <ul className="radioList meiwenList">
                 {
                   meiwen.map((meiwen,index)=>{
-                    return <li key={index}>
+                    return <li key={index} onClick={()=>{this.toDjRadio(meiwen.id)}}>
                       <img src={meiwen.picUrl} alt=""/>
                       <div className="radioInfo">
                         <h3>{meiwen.name}</h3>
@@ -342,7 +362,7 @@ export default class Radio extends Component{
               <ul className="radioList tuokouxiuList">
                 {
                   tuokouxiu.map((tuokouxiu,index)=>{
-                    return <li key={index}>
+                    return <li key={index} onClick={()=>{this.toDjRadio(tuokouxiu.id)}}>
                       <img src={tuokouxiu.picUrl} alt=""/>
                       <div className="radioInfo">
                         <h3>{tuokouxiu.name}</h3>
@@ -362,7 +382,7 @@ export default class Radio extends Component{
               <ul className="radioList qingganList">
                 {
                   qinggan.map((qinggan,index)=>{
-                    return <li key={index}>
+                    return <li key={index} onClick={()=>{this.toDjRadio(qinggan.id)}}>
                       <img src={qinggan.picUrl} alt=""/>
                       <div className="radioInfo">
                         <h3>{qinggan.name}</h3>
@@ -382,7 +402,7 @@ export default class Radio extends Component{
               <ul className="radioList chuangzuoList">
                 {
                   chuangzuo.map((chuangzuo,index)=>{
-                    return <li key={index}>
+                    return <li key={index} onClick={()=>{this.toDjRadio(chuangzuo.id)}}>
                       <img src={chuangzuo.picUrl} alt=""/>
                       <div className="radioInfo">
                         <h3>{chuangzuo.name}</h3>
@@ -402,7 +422,7 @@ export default class Radio extends Component{
               <ul className="radioList renwenList">
                 {
                   renwen.map((renwen,index)=>{
-                    return <li key={index}>
+                    return <li key={index} onClick={()=>{this.toDjRadio(renwen.id)}}>
                       <img src={renwen.picUrl} alt=""/>
                       <div className="radioInfo">
                         <h3>{renwen.name}</h3>
