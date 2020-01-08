@@ -1,10 +1,26 @@
 import React,{Component} from "react"
 import './SongList.less'
-// import { reqHotCategory } from '../../../api'
+import { reqClassList } from '../../api'
 
 export default class SongList extends Component{
   state={
-    isShow:false
+    isShow:false,
+    classList:[],
+    classItem:[]
+  }
+  componentDidMount(){
+    this.getclassList()
+  }
+  getclassList = async()=>{
+    let data = await reqClassList()
+    console.log(data)
+    const { code, categories,sub } = data
+    console.log(categories)
+      if (code===200) {
+        this.setState({ classList: categories })
+        this.setState({ classItem:sub })
+        console.log(this.state)
+      }
   }
   show=()=>{
     let isShow=!this.state.isShow
@@ -12,7 +28,12 @@ export default class SongList extends Component{
 
   }
   render(){
-    let {isShow}=this.state
+    let {isShow,classList}=this.state
+    let arr=[]
+    // console.log(JSON.parse(classList))
+    for (const i in classList) {
+      arr.push(classList[i])
+    }
     return(
       <div id="wjContainer">
         <div className="wjBody">
@@ -31,169 +52,25 @@ export default class SongList extends Component{
             </div>
             <div className="wjBd">
               <h3><a href="#">全部风格</a></h3>
-              <dl>
-                <dt><i className="icon1"></i>语种</dt>
-                <dd>
-                  <a href="#">华语</a>
-                  <span>|</span>
-                  <a href="#">欧美</a>
-                  <span>|</span>
-                  <a href="#">日语</a>
-                  <span>|</span>
-                  <a href="#">韩语</a>
-                  <span>|</span>
-                  <a href="#">粤语</a>
-                  <span>|</span>
-                </dd>
-              </dl>
-              <dl>
-                <dt><i className="icon2"></i>风格</dt>
-                <dd>
-                  <a href="#">流行</a>
-                  <span>|</span>
-                  <a href="#">摇滚</a>
-                  <span>|</span>
-                  <a href="#">民谣</a>
-                  <span>|</span>
-                  <a href="#">电子</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                </dd>
-              </dl>
-              <dl>
-                <dt><i className="icon3"></i>场景</dt>
-                <dd>
-                  <a href="#">华语</a>
-                  <span>|</span>
-                  <a href="#">欧美</a>
-                  <span>|</span>
-                  <a href="#">日语</a>
-                  <span>|</span>
-                  <a href="#">韩语</a>
-                  <span>|</span>
-                  <a href="#">粤语</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                  <a href="#">舞曲</a>
-                  <span>|</span>
-                </dd>
-              </dl>
-              <dl>
-                <dt><i className="icon4"></i>情感</dt>
-                <dd>
-                  <a href="#">华语</a>
-                  <span>|</span>
-                  <a href="#">欧美</a>
-                  <span>|</span>
-                  <a href="#">日语</a>
-                  <span>|</span>
-                  <a href="#">韩语</a>
-                  <span>|</span>
-                  <a href="#">粤语</a>
-                  <span>|</span>
-                  <a href="#">粤语</a>
-                  <span>|</span>
-                  <a href="#">粤语</a>
-                  <span>|</span>
-                  <a href="#">粤语</a>
-                  <span>|</span>
-                  <a href="#">粤语</a>
-                  <span>|</span>
-                  <a href="#">粤语</a>
-                  <span>|</span>
-                  <a href="#">粤语</a>
-                  <span>|</span>
-                  <a href="#">粤语</a>
-                  <span>|</span>
-                </dd>
-              </dl>
-              <dl>
-                <dt><i className="icon5"></i>主题</dt>
-                <dd className="last">
-                  <a href="#">华语</a>
-                  <span>|</span>
-                  <a href="#">欧美</a>
-                  <span>|</span>
-                  <a href="#">日语</a>
-                  <span>|</span>
-                  <a href="#">韩语</a>
-                  <span>|</span>
-                  <a href="#">粤语</a>
-                  <span>|</span>
-                  <a href="#">粤语</a>
-                  <span>|</span>
-                  <a href="#">粤语</a>
-                  <span>|</span>
-                  <a href="#">粤语</a>
-                  <span>|</span>
-                  <a href="#">粤语</a>
-                  <span>|</span>
-                  <a href="#">粤语</a>
-                  <span>|</span>
-                  <a href="#">粤语</a>
-                  <span>|</span>
-                  <a href="#">粤语</a>
-                  <span>|</span>
-                  <a href="#">粤语</a>
-                  <span>|</span>
-                  <a href="#">粤语</a>
-                  <span>|</span>
-                  <a href="#">粤语</a>
-                  <span>|</span>
-                  <a href="#">粤语</a>
-                  <span>|</span>
-                  <a href="#">粤语</a>
-                  <span>|</span>
-                </dd>
-              </dl>
+              {
+                arr.map((item,index) => {
+                  return(
+                    <dl>
+                      <dt><i className="icon1">{item}</i></dt>
+                        <dd>
+                      {this.state.classItem.map((item,index)=>{
+                        return(
+                          
+                            <a href="#">{item.name}</a>
+                            // <span>|</span>
+                          )
+                      })
+                    }
+                      </dd>
+                    </dl>
+                    )
+                })
+              }
             </div>
             <div className="wjFt"></div>
           </div>

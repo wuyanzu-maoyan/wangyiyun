@@ -23,6 +23,8 @@ export const reqAlbumList = () =>ajax.get('/top/album?order=new&limit=10&')
 //请求轮播图的歌曲
 export const reqMVlist = () => ajax.get('personalized/mv');
 
+//获取歌曲分类
+export const reqClassList = () => ajax.get('/playlist/catlist');
 //获取热门歌曲分类
 export const reqHotCategory = () => ajax.get('/playlist/hot');
 
