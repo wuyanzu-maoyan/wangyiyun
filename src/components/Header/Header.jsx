@@ -36,7 +36,6 @@ export default class Header extends Component{
   }
   componentDidMount(){
     window.onscroll = (event)=>{
-
       if(document.documentElement.scrollTop > 0){
         this.refs.kjcFix.style.display = 'block'
       }else{

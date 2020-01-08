@@ -75,7 +75,7 @@ export default class Radio extends Component{
     }
     //请求美文读物 电台
     let meiwenResult = await reqRadioHot(6,1) //请求回来6条数据
-    console.log(meiwenResult);
+    // console.log(meiwenResult);
     if(meiwenResult.code === 200){
       const meiwen = meiwenResult.djRadios.slice(0,4)
       this.setState({
@@ -145,9 +145,6 @@ export default class Radio extends Component{
   
   //切换分类高亮状态
   toggleActiveType(index,id){
-    console.log(111);
-    console.log('id',id);
-    console.log(222);
     this.setState({
       activeIndex: index
     })
@@ -159,7 +156,7 @@ export default class Radio extends Component{
   toProgram(id){
     window.location.href=`https://music.163.com/#/program?id=${id}`
   }
-  //跳转到音乐故事详情
+  //跳转到各分类详情
   toDjRadio(id){
     window.location.href=`https://music.163.com/#/djradio?id=${id}`
   }

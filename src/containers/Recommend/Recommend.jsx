@@ -153,27 +153,21 @@ export default class Recommend extends Component {
   toDisc = () => {
     this.props.history.push('/disc')
   }
-  toTopList = () => {
-    this.props.history.push('/toplist')
+  toTopList = (name) => {
+    console.log(name);
+    this.props.history.push('/toplist/rc/'+name);
   }
   toSinger = (event) => {
     event.preventDefault();
     this.props.history.push('/singer');
+
   }
   render() {
     return (
       <div className='RecommendContainer'>
 
         <div className='MVWrapper'>
-          {/* <div className="bigSwiper">
-            <div className="big-swiper-container">
-                <div className="swiper-wrapper">
-                    <div className="swiper-slide">Slide 1</div>
-                    <div className="swiper-slide">Slide 2</div>
-                    <div className="swiper-slide">Slide 3</div>
-                </div>
-            </div>
-          </div> */}
+          
           <div className="MV">
             <div className="small-swiper">
               <div className="small-swiper-container">
@@ -322,7 +316,7 @@ export default class Recommend extends Component {
                 <div className="topListContent">
 
                   <div className="riseList">
-                    <div className='playListTitle' onClick={() => {this.toTopList('3')}}>
+                    <div className='playListTitle' onClick={() => {this.toTopList(this.state.rise.name)}}>
                       <div className='imgBlock'>
                         <img src={this.state.rise.coverImgUrl} alt=""/>
                       </div>
@@ -363,7 +357,7 @@ export default class Recommend extends Component {
                   </div>
                   
                   <div className="newSongs">
-                    <div className='playListTitle' onClick={() => {this.toTopList('0')}}>
+                    <div className='playListTitle' onClick={() => {this.toTopList(this.state.new.name)}}>
                       <div className='imgBlock'>
                         <img src={this.state.new.coverImgUrl} alt=""/>
                       </div>
@@ -402,7 +396,7 @@ export default class Recommend extends Component {
                     </div>
                   
                   <div className="originalList">
-                    <div className='playListTitle' onClick={() => {this.toTopList('2')}}>
+                    <div className='playListTitle' onClick={() => {this.toTopList(this.state.original.name)}}>
                       <div className='imgBlock'>
                         <img src={this.state.original.coverImgUrl} alt=""/>
                       </div>
