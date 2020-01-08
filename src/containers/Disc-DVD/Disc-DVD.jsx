@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import './Disc-DVD.less'
-import { Route ,NavLink} from "react-router-dom";
+import { Route ,NavLink,Redirect} from "react-router-dom";
 import Quanbu from './Disc-DVD.1/quanbu.jsx'
 import Hanguo from './Disc-DVD.1/hanguo'
 import Huayu from './Disc-DVD.1/huayu'
@@ -72,6 +72,7 @@ import { reqNewList } from "../../api/index";
               <NavLink to='/disc/riben'>日本</NavLink>
             </div>
           </div>
+          <Redirect to='/disc/quanbu'></Redirect>
           <Route path='/disc/quanbu' component={Quanbu}></Route>
           <Route path='/disc/oumei' component={Oumei}></Route>
           <Route path='/disc/huayu' component={Huayu}></Route>
