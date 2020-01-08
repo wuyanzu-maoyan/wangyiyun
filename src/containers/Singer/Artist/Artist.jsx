@@ -75,7 +75,7 @@ export default class Artist extends Component{
           </div>
         </div>
 
-        <div className="zxHotSingerWap clearfix">
+        <div className="zxHotSingerWap">
             {
               hotNameList.map(item =>{
                 return <SingerHotItem key={item.id} {...item}></SingerHotItem>

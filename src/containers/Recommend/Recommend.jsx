@@ -166,22 +166,22 @@ export default class Recommend extends Component {
 
         <div className='MVWrapper'>
           {/* <div className="bigSwiper">
-            <div class="big-swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">Slide 1</div>
-                    <div class="swiper-slide">Slide 2</div>
-                    <div class="swiper-slide">Slide 3</div>
+            <div className="big-swiper-container">
+                <div className="swiper-wrapper">
+                    <div className="swiper-slide">Slide 1</div>
+                    <div className="swiper-slide">Slide 2</div>
+                    <div className="swiper-slide">Slide 3</div>
                 </div>
             </div>
           </div> */}
           <div className="MV">
             <div className="small-swiper">
-              <div class="small-swiper-container">
-                <div class="swiper-wrapper">
+              <div className="small-swiper-container">
+                <div className="swiper-wrapper">
                   {
                     this.state.mvList.map((item,index) => {
                       return (
-                        <div class="swiper-slide" key={index}>
+                        <div className="swiper-slide" key={index}>
                           <img src={item.picUrl} alt=""/>
                         </div>
                       )
@@ -190,10 +190,10 @@ export default class Recommend extends Component {
                     
                 </div>
                 
-                <div class="swiper-pagination"></div>
+                <div className="swiper-pagination"></div>
               </div>
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-button-next"></div>
+              <div className="swiper-button-prev"></div>
+              <div className="swiper-button-next"></div>
               
               </div>
             <div className="download">

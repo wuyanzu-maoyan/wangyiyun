@@ -1,0 +1,48 @@
+.zxLeftNavList{
+  p{
+    height: 25px;
+    padding-left: 14px;
+    font-size: 16px;
+    font-family: "Microsoft Yahei";
+    font-weight: bold;
+  }
+  ul{
+    li{
+      margin-bottom: 2px;
+      width: 160px;
+      height: 29px;
+      line-height: 29px;
+      padding-left: 10px;
+      a{
+        height: 29px;
+        line-height: 29px;
+        text-decoration: none;
+        color: #333;
+      }
+      a:hover{
+        text-decoration: underline;
+      }
+    }
+    .active{
+      border: 1px solid #ddd;
+      a{
+        color: #c20c0c
+      }
+    }
+    li::before{
+      content: "\02022";
+      margin-left: -2px;
+      margin-right: 8px;
+      color: #b3b3b3;
+      font-style: normal;
+      list-style-type: square;
+    }
+  }
+  .line{
+    width: 160px;
+    height: 1px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    background-color: #ccc;
+  }
+}

@@ -9,15 +9,17 @@ export default class SingerItem extends Component{
       return (
         <div className="zxSingerItem">
           <img src={img1v1Url} alt=""/>
-          <p><NavLink to="/singer/signed">{name}</NavLink></p>
-          <div className="img"></div>
+          <div className="link">
+            <NavLink to="/singer/x">{name}</NavLink>
+            <div className="img"></div>
+          </div>
         </div>
       )
     }else{
       return (
         <div className="zxSingerItem">
           <img src={img1v1Url} alt=""/>
-          <p><NavLink to="/singer/signed">{name}</NavLink>
+          <p><NavLink to="/singer/x">{name}</NavLink>
           </p>
         </div>
       )
