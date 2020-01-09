@@ -33,7 +33,7 @@ export const reqRecommend = () => ajax.get('/top/playlist?limit=8&order=hot');
 export const reqNewList = (area) => ajax.get('/album/newest',{params:{area}});
 
 //获取不同分类列表
-export const reqSongList = (area,offset) => ajax.get('/top/album',{params:{area,limit:35,offset}});
+export const reqSongList = (area,offset) => ajax.get('/top/album',{params:{area,limit:1000,offset}});
 // export const reqNewList1 = () => ajax.get('/top/album?area=new&limit=1000&offset=15');
 // export const reqNewList2 = () => ajax.get('/top/album?area=zh&limit=1000&offset=40');
 // export const reqNewList3 = () => ajax.get('/top/album?area=EA&limit=1000&offset=150');
