@@ -6,11 +6,13 @@ import {reqTopItem} from '../../../api'
 import {createGetTopItemAction} from '../../../redux/action_creator/topList_action'
 import PubSub from 'pubsub-js';
 
+
 @connect(
   state => ({topList:state.topList}),{
     setTopItem:createGetTopItemAction
   }
 )
+
 class LeftNav extends Component{
   state={
     topListArr:[ //根据下标发请求
@@ -103,22 +105,25 @@ class LeftNav extends Component{
     }
   }
   componentDidMount(){
-   
-  }
+
+}
   render(){
     let {topList} = this.props
     return(
     <div className="kjcLeftNav">
       <div className="kjcFeatureList">
         <h2>云音乐特色榜</h2>
-        <ul>
+        <ul ref="ul1">
           {
             topList.map((item,index)=>{
             if(index<4){
          return  (
           <NavLink key={item.id} to={`/toplist/rc/${item.name}`} onClick={()=>{this.getTopItem(item.name,index,item.id)}} >
             <li>
-          <img src={item.coverImgUrl} alt=""/>
+            
+             <img  src={item.coverImgUrl} alt=""/>
+           
+             {/* <img  src={item.coverImgUrl} alt=""/> */}
           <div className="kjcFeatureItem">
               <div className="kjcFeatureTitle">{item.name}</div>
               <div className="kjcFeatureUpdate">{item.updateFrequency}</div>

@@ -8,6 +8,251 @@
   border-top: 1px solid #d3d3d3;
   overflow: hidden;
   font-size: 12px;
+    .kjcPlaye{
+      position: fixed;
+      bottom: 1px;
+      left: 0;
+      width: calc(100% - 52px);
+      height: 53px;
+      background-image: url('../img/playbar_8.png');
+      background-position: 0 0;
+      background-repeat: repeat-x;
+      transition: 0.5s;
+      .w{
+        width: 982px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-47.5%);
+        display: flex;
+        align-items: center;
+        .kjcFooterBtns{
+          width: 137px;
+          height: 53px;
+          display: flex;
+          align-items: center;
+          .kjcPreSong{
+            width: 28px;
+            height: 28px;
+            background-image: url('../img/playbar.png');
+            background-position: 0 -130px;
+            background-repeat: no-repeat;
+            margin-right: 8px;
+            margin-top: 5px;
+            
+          }
+          .kjcPlay{
+            width: 36px;
+            height: 36px;
+            background-image: url('../img/playbar.png');
+            background-position: 0 -204px;
+            background-repeat: no-repeat;
+            margin-right: 8px;
+            margin-top: 5px;
+            cursor: pointer;
+            &.active{
+              background-position: 0 -165px;
+            }
+          }
+          .kjcNextSong{
+            width: 28px;
+            height: 28px;
+            background-image: url('../img/playbar.png');
+            background-position: -80px -130px;
+            background-repeat: no-repeat;
+            margin-right: 8px;
+            margin-top: 5px;
+          }
+        }
+        .kjcMusicImg{
+          width: 34px;
+          height: 34px;
+          margin: 6px 16px 0 0;
+          position: relative;
+          img{
+            width: 34px;
+            height: 34px;
+          }
+          span{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 34px;
+            height: 35px;
+            background-image: url('../img/playbar.png');
+            background-position: 0 -80px;
+            background-repeat: no-repeat;
+          }
+
+        }
+        .kjcPlayLine{
+          width: 608px;
+          height: 37px;
+          position: relative;
+          .kjcPlayTemp{
+            width: 100%;
+            height: 26px;
+            line-height: 26px;
+            .kjcSingerName{
+              max-width: 300px;
+              color: #e8e8e8;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              &:hover{
+                text-decoration: underline;
+              }
+            }
+            .kjcSongName{
+              text-shadow: 0 1px 0 #171717;
+              margin-left: 15px;
+              color: #9b9b9b;
+              &:hover{
+                text-decoration: underline;
+              }
+            }
+          }
+          .kjcPL{
+            position: absolute;
+            background-image: url('../img/statbar.png');
+            background-repeat: no-repeat;
+            height: 9px;
+            width: 0px;
+            background-position: left -66px;
+            background-color: #C20C0C;
+            z-index: 20;
+          }
+          .kjcLine{
+            position: absolute;
+            display: block;
+            width: 493px;
+            height: 9px;
+            background-image: url('../img/statbar.png');
+            background-position: right 0;
+            background-repeat: no-repeat;
+            &.active{
+              background-position: right -30px;
+            }
+          }
+          .kjcPoint{
+            position: absolute;
+            left:-8px;
+            width: 22px;
+            height: 24px;
+            bottom: -6px;
+            background-image: url('../img/iconall.png');
+            background-position: 0 -250px;
+            background-repeat: no-repeat;
+            z-index: 21;
+            
+          }
+          .kjcPlayTime{
+            position: absolute;
+            right: 30px;
+            bottom: -1px;
+            color: #797979;
+            text-shadow: 0 1px 0 #121212;
+            span{
+              color: #a1a1a1;
+            }
+          }
+        }
+        .kjcOper{
+          width: 60px;
+          height: 36px;
+          display: flex;
+          .kjcOper1{
+            width: 25px;
+            height: 25px;
+            margin-top: 8px;
+            margin-right: 2px;
+            background-image: url('../img/playbar.png');
+            background-position: -88px -163px;
+            background-repeat: no-repeat;
+          }
+          .kjcOper2{
+            width: 25px;
+            height: 25px;
+            margin-top: 8px;
+            margin-right: 2px;
+            background-image: url('../img/playbar.png');
+            background-position: -114px -163px;
+            background-repeat: no-repeat;
+          }
+        }
+        .kjcPlayControl{
+          width: 136px;
+          height: 36px;
+          padding-left: 13px;
+          background-image: url('../img/playbar.png');
+          background-position: -147px -238px;
+          background-repeat: no-repeat;
+          display: flex;
+          .kjcVoice{
+            width: 25px;
+            height: 25px;
+            background-image: url('../img/playbar.png');
+            background-position: -2px -248px;
+            background-repeat: no-repeat;
+            margin: 8px 2px 0 0;
+          }
+          .kjcLoop{
+            width: 25px;
+            height: 25px;
+            background-image: url('../img/playbar.png');
+            background-position: -66px -344px;
+            background-repeat: no-repeat;
+            margin: 8px 2px 0 0;
+          }
+          .kjcList{
+            width: 59px;
+            height: 36px;
+            span{
+              display: block;
+              width: 59px;
+              height: 25px;
+              background-image: url('../img/playbar.png');
+              background-position: -42px -68px;
+              background-repeat: no-repeat;
+              padding-left: 21px;
+              line-height: 27px;
+              text-shadow: 0 1px 0 #080707;
+              color: #666;
+              margin: 8px 2px 0 0;
+              text-align: center;
+            }
+          }
+        }
+      }
+      &.hidden{
+        bottom:-46px
+      }
+      .kjcLeftIcon{
+        position: fixed;
+        bottom: 1px;
+        right: 0;
+        width: 52px;
+        height: 67px;
+        background-image: url('../img/playbar.png');
+        background-position: 0 -380px;
+        background-repeat: no-repeat;
+        transition: 0.5s;
+        &.hidden{
+          bottom:-46px
+        }
+        .kjcPlayIcon{
+          display: block;
+          width: 18px;
+          height: 18px;
+          margin: 6px 0 0 17px;
+          background-image: url('../img/playbar.png');
+          background-position: -80px -380px;
+          background-repeat: no-repeat;
+
+        }
+      }
+    }
+   
+  
 }
 
 .footer .footer-wrap {

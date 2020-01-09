@@ -1,0 +1,52 @@
+.zxLeftNavList{
+  p{
+    height: 25px;
+    padding-left: 14px;
+    font-size: 16px;
+    font-family: "Microsoft Yahei";
+    font-weight: bold;
+  }
+  ul{
+    li{
+      margin-bottom: 2px;
+      display: flex;
+      width: 160px;
+      height: 29px;
+      line-height: 29px;
+      padding-left: 10px;
+      .zxSpot{
+        width: 4px;
+        height: 4px;
+        margin-left: 2px;
+        margin-right: 5px;
+        margin-top: 13px;
+        background-color: #b3b3b3;
+      }
+      a{
+        height: 29px;
+        line-height: 29px;
+        text-decoration: none;
+        color: #333;
+      }
+      a:hover{
+        text-decoration: underline;
+      }
+    }
+    .active{
+      border: 1px solid #ddd;
+      .zxSpot{
+        background-color: #c20c0c;
+      }
+      a{
+        color: #c20c0c
+      }
+    }
+  }
+  .line{
+    width: 160px;
+    height: 1px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    background-color: #ccc;
+  }
+}
